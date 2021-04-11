@@ -18,5 +18,5 @@ module.exports.getSingleStory = async (req, res) => {
     .populate('language')
     .populate('languageVersion')
     .exec();
-  renderLanguageVersion(req, res, story, 'story', 'stories')
+  renderLanguageVersion(req, res, story, 'story', 'stories', undefined, { title: story.title, metadescription: `Stories - ${story.excerpt}` })
 }

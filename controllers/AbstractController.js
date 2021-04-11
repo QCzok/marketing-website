@@ -1,14 +1,16 @@
 const mongoose = require("mongoose");
 const Language = require("../models/language");
-module.exports.renderLanguageVersion = async (req, res, model, singlePath, path, identifier = `slug`) => {
+module.exports.renderLanguageVersion = async (req, res, model, singlePath, path, identifier = `slug`, args = {}) => {
   if (!!model && !!model.language && model.language.title !== 'en' && !req.session.locale) {
     res.redirect(`/${path}/${model.languageVersion[identifier]}`)
   } else if (!!model && !!model.languageVersion && !!req.session.locale && model.language.title !== req.session.locale) {
     res.redirect(`/${path}/${model.languageVersion[identifier]}`)
   } else if (model) {
-    return res.render(`${singlePath}`, {
-      [singlePath]: model
-    });
+    const responseObject = {
+      [singlePath]: model,
+      args
+    }
+    return res.render(`${singlePath}`, responseObject);
 
   } else {
     return res.redirect(`/${path}`)
