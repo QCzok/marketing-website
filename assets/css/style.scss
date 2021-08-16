@@ -24,11 +24,7 @@
 }
 
 @import "global";
-<<<<<<< HEAD
-@import "../../node_modules/bootstrap-colorpicker/src/sass/colorpicker";
 @import '../../node_modules/intl-tel-input/build/css/intlTelInput.css';
-=======
->>>>>>> 1e237e6e (feat: remove coloraccent code positions)
 @import "footer";
 @import "typography";
 
@@ -1713,6 +1709,9 @@ body[class*="pages-"] {
     clip-path: polygon(0px 0px, calc(100% - 50px) 10.86%, 100% 100%, 0% 100%);
     transform: unset;
   }
+}
+.jumbotron {
+  background-color: transparent;
 }
 
 .border-width-0 {
