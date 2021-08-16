@@ -24,6 +24,19 @@ mixin singleCourse
               if course.courselength
                 .row
                   .p-4.font-weight-bold.align-self-end=course.courselength
+    - randompartners = [...partners.filter(p => p.is_alumni_employer)]
+    - for (let i = randompartners.length - 1; i > 0; i--) {
+        - const j = Math.floor(Math.random() * (i + 1));
+        - [randompartners[i], randompartners[j]] = [randompartners[j], randompartners[i]];
+    - }  
+    .container.py-5
+      h6.text-center.mb-3.font-weight-bold.text-muted: +translate("Where Our Graduates Work")
+      .row.justify-content-center
+        each partner, index in randompartners.splice(0,6)
+          .col-3.col-md-2.partner.h-4.flex-column.align-items-center.justify-content-center(class=index > 3 ? "d-none d-lg-flex" : "d-flex")
+            .p-0.p-lg-2
+              img.partners-logo.w-100.px-0.px-lg-3(alt=partner.title, src="/images/" + partner.partnerlogo, )
+
     .bg-primary-light.p-5
       div.my-3.my-y-xl-5.text-center
         a.btn.btn-lg.btn-secondary.mx-3.mb-3.w-100.w-md-auto(href="/signup"): +translate("Apply Now")
