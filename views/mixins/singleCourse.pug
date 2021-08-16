@@ -54,57 +54,51 @@ mixin singleCourse
                               img.object-fit-cover.img-fluid(alt=course.description src="/images/"+course.icon)
                             else
                               img.w-100(src="/media/pixel.gif" alt=course.headline style=`background-image: url('${course.icon ? `/images/` + course.icon : `/media/circuit-board.svg`}')`)
-            if course.courselength
-              .row
-                .p-4.font-weight-bold.align-self-end=course.courselength
 
   .position-relative.mb-3.overflow-hidden
     .container-fluid.position-relative
       section#section1
         .row.row-courses
-          .col-md-3.px-5.bg-white.d-flex.flex-column.justify-content-end.mt-md-n5
-            span
-            img.img-fluid(alt=course.description src="/images/"+course.subicon)
-            .w-50.h-50.position-absolute.bottom.left.bg-yellow.half-transparent
-          .col-md-7.px-5.bg-white.py-5.border-right.border-grey
-            .pt-xl-5
+          .col-md-4.bg-white.d-flex.flex-column.justify-content-center.position-relative.z-1
+            .justify-content-center.d-flex.position-relative
+              img.img-fluid.mb-n5(alt=course.description src="/images/"+course.subicon)
+              .w-100.h-100.position-absolute.bottom.left.bg-yellow.third-transparent.z-minus.shift-left-top
+          .col-md-6.bg-white.py-5.d-flex.flex-column.justify-content-center
+            .pr-5.border-right.border-grey
               h5.text-left.font-weight-bold.text-muted.text-uppercase.py-3: +translate("Overview")
               h2.mt-3.mb-3.text-left=course.title
               p.mb-0.lead.text-left=course.subtitle
 
-          .col-md-2.py-5
-            div.mb-5.py-md-4
-              .container.section-counter
-                .d-flex.flex-column.py-4
-                  .my-4.d-flex.flex-column.justify-content-center
-                    .counter-item
-                      .counter-number.font-weight-bold
-                        h2.display-2
-                          span.counter-count=locals.settings.careersuccesspage_alumni ? locals.settings.careersuccesspage_alumni : user ? "setting not defined" : ""
-                          = "+"
-                      h4.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("DCI Alumni")
-                  .my-4.d-flex.flex-column.justify-content-center
-                    .counter-item
-                      .counter-number.font-weight-bol
-                        h2.display-2
-                          span.counter-count=locals.settings.careersuccesspage_students ? locals.settings.careersuccesspage_students : user ? "setting not defined" : ""
-                          = "+"
-                      h4.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto
-                        +translate("DCI Students")
-                  .my-4.d-flex.flex-column.justify-content-center
-                    .counter-item
-                      .counter-number.font-weight-bold
-                        h2.display-2
-                          span.counter-count=locals.settings.careersuccesspage_companypartners ? locals.settings.careersuccesspage_companypartners : user ? "setting not defined" : ""
-                          = "+"
-                      h4.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("Company Partners")
-                  .my-4.d-flex.flex-column.justify-content-center
-                    .counter-item
-                      .counter-number.font-weight-bold
-                        h2.display-2
-                          span.counter-count=locals.settings.careersuccesspage_employmentrate ? locals.settings.careersuccesspage_employmentrate : user ? "setting not defined" : ""
-                          = "%"
-                h4.text-white.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("Employment rate within 6 months")
+          .col-md-2
+            .d-flex.flex-column.text-center.py-4
+              .my-4.d-flex.flex-column.justify-content-center
+                .counter-item
+                  .counter-number.font-weight-bold
+                    h2.display-2
+                      span.counter-count=locals.settings.careersuccesspage_alumni ? locals.settings.careersuccesspage_alumni : user ? "setting not defined" : ""
+                      = "+"
+                  p: +translate("DCI Alumni")
+              .my-4.d-flex.flex-column.justify-content-center
+                .counter-item
+                  .counter-number.font-weight-bol
+                    h2.display-2
+                      span.counter-count=locals.settings.careersuccesspage_students ? locals.settings.careersuccesspage_students : user ? "setting not defined" : ""
+                      = "+"
+                  p: +translate("DCI Students")
+              .my-4.d-flex.flex-column.justify-content-center
+                .counter-item
+                  .counter-number.font-weight-bold
+                    h2.display-2
+                      span.counter-count=locals.settings.careersuccesspage_companypartners ? locals.settings.careersuccesspage_companypartners : user ? "setting not defined" : ""
+                      = "+"
+                  p: +translate("Company Partners")
+              .my-4.d-flex.flex-column.justify-content-center
+                .counter-item
+                  .counter-number.font-weight-bold
+                    h2.display-2
+                      span.counter-count=locals.settings.careersuccesspage_employmentrate ? locals.settings.careersuccesspage_employmentrate : user ? "setting not defined" : ""
+                      = "%"
+                  p: +translate("Placement rate")
     section.position-relative.py-5
       .position-absolute.top.left.right.bottom.third-transparent
 
