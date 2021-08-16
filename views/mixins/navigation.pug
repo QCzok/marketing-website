@@ -58,7 +58,7 @@ mixin navigation
                     a.dropdown-item.nav-link(class= currentPath === ("/pages/" + page.slug) ? "active" : "" href='/pages/'+ page.slug)=page.title
 
           li.position-relative.nav-item.z-foreground
-            a.contactlinktext.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.white-space-nowrap(href="/signup" class=course && course.coloraccent ? `` : `text-white` )=__("Apply now short")
+            a.contactlinktext.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.white-space-nowrap(href="/signup")=__("Apply now short")
             .contactlink()
 
           li.position-relative.nav-item.d-flex.align-items-center

@@ -58,23 +58,5 @@ if (editorContainer) {
   }
 }
 
-<<<<<<< HEAD
-const deleteButtons = document.querySelectorAll(
-  'button.btn-danger, button.btn-outline-danger'
-);
-Array.from(deleteButtons).map((button) =>
-  button.addEventListener('click', (e) => !confirm('are you sure?') && e.preventDefault())
-);
-$(function () {
-  $('#coloraccent').colorpicker({
-    autoInputFallback: false,
-    format: 'rgb',
-  });
-  $('#coloraccent').on('colorpickerChange', function (event) {
-    $('#colorpicker').css('background-color', event.color.toRgbString());
-  });
-});
-=======
 const deleteButtons = document.querySelectorAll("button.btn-danger, button.btn-outline-danger");
 Array.from(deleteButtons).map(button => button.addEventListener("click", (e) => !confirm("are you sure?") && e.preventDefault()))
->>>>>>> 1e237e6e (feat: remove coloraccent code positions)
