@@ -4,7 +4,6 @@ import 'bootstrap/js/dist/alert';
 import './settings';
 import './redirects';
 import './questions';
-import 'bootstrap-colorpicker';
 import Quill from 'quill/dist/quill';
 
 $(function () {
@@ -59,6 +58,7 @@ if (editorContainer) {
   }
 }
 
+<<<<<<< HEAD
 const deleteButtons = document.querySelectorAll(
   'button.btn-danger, button.btn-outline-danger'
 );
@@ -74,3 +74,7 @@ $(function () {
     $('#colorpicker').css('background-color', event.color.toRgbString());
   });
 });
+=======
+const deleteButtons = document.querySelectorAll("button.btn-danger, button.btn-outline-danger");
+Array.from(deleteButtons).map(button => button.addEventListener("click", (e) => !confirm("are you sure?") && e.preventDefault()))
+>>>>>>> 1e237e6e (feat: remove coloraccent code positions)
