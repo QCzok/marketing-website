@@ -172,130 +172,135 @@ mixin singleCourse
             .dotted.w-15.h-15.position-absolute.bottom-10.right.iron.mb-n4.mr-n4.z-minus
             img.w-100.h-100.object-fit-contain.d-none.d-md-block(alt=__( "Where Our Graduates Work" ) src="/media/leandro.jpg" )
 
-
-      section#youtube
-        .container
-          h2=__("DCI Alumni at Work")
-          .videoWrapper
-            iframe(width='100%' src='https://www.youtube.com/embed/oDzyVmmDh5c' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen)
-      if course.successStory
-        +successCarousel([ course.successStory ])
-
-      section#section3.my-5.container.text-left
-        .row
-          .col-md-6
-            .position-absolute.top.left.right.bottom.third-transparent.z-minus     
-            //- h5.font-weight-bold.text-muted.text-uppercase.py-3: +translate("Our next Course Start")
-            //- each location in course.locations
-            //-   span.badge.badge-primary.mr-2=location.name
-
-            h2.font-weight-bold.text-uppercase.mb-4: +translate("Course Destails & Requirements")
-            if course.startInterval
-              .my-3
-                strong.mr-2
-                  +translate("Starts every")
-                  = ":"
-                span
-                  span.padded-text()=course.startInterval
+    section.pb-5
+      .position-relative
+        .bg-yellow.w-100.mb-n5.position-absolute.top-50.left.bottom.right.left.third-transparent
+        section#youtube
+          .container.position-relative
+            h2.mb-5=__("DCI Alumni at Work")
+            .dotted.w-4.h-2.position-absolute.top-15.left.iron.z-minus.mr-3.ml-n5
+            .dotted.w-15.h-15.position-absolute.bottom.right.iron.z-minus.mr-3
+            .row
+              .col-md-6
+                .videoWrapper
+                  iframe(width='100%' src='https://www.youtube.com/embed/oDzyVmmDh5c?controls=0' title=story.title frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen)
+              .col-md-6.d-flex.justify-content-center.flex-column
+                div.mb-4
+                  strong=story.title + " - "
+                  span= story.workPosition
+                div !{story.toHTML}
+            
+    section#section3.my-5.container.text-left
+      .row
+        .col-md-6
+          .position-absolute.top.left.right.bottom.third-transparent.z-minus     
+          h2.font-weight-bold.text-uppercase.mb-4: +translate("Course Destails & Requirements")
+          if course.startInterval
             .my-3
               strong.mr-2
-                +translate("Teaching Mode")
-                =":"
+                +translate("Starts every")
+                = ":"
               span
-                span.padded-text()=__( "On Campus & Online" )
-            if course.courseLanguages
-              .my-3
-                strong.mr-2
-                  +translate("Language")
-                  =":"
-                span.padded-text()
-                  = course.courseLanguages
-            if course.courselength
-              .my-3
-                strong.mr-2
-                  +translate("Duration")
-                  =":"
-                span.padded-text()= course.courselength
-            if course.locations
-              .my-3
-                strong.mr-2
-                  +translate("Availability")
-                  =":"
-                span.padded-text()
-                  each location, index in course.locations
-                    =location.name
-                    if index != course.locations.length - 1
-                      =", "
-                  =" & Online"
-          .col-md-6.position-relative
-            if course.requiredLanguages
-              .my-3
-                strong.mr-2
-                  +translate("Language")
-                  =":"
-                span.padded-text()
-                  = course.requiredLanguages 
-            if course.computerKnowledge
-              .my-3
-                strong.mr-2
-                  +translate("Computer Knowledge")
-                  =":"
-                span.padded-text()=course.computerKnowledge
-            if course.education
-              .my-3
-                strong.mr-2
-                  +translate("Education")
-                  =":"
-                span.padded-text()=course.education
-            if course.other
-              .my-3
-                strong.mr-2
-                  +translate("Other")
-                  =":"
-                span.padded-text()=course.other
-      hr.d-md-none
+                span.padded-text()=course.startInterval
+          .my-3
+            strong.mr-2
+              +translate("Teaching Mode")
+              =":"
+            span
+              span.padded-text()=__( "On Campus & Online" )
+          if course.courseLanguages
+            .my-3
+              strong.mr-2
+                +translate("Language")
+                =":"
+              span.padded-text()
+                = course.courseLanguages
+          if course.courselength
+            .my-3
+              strong.mr-2
+                +translate("Duration")
+                =":"
+              span.padded-text()= course.courselength
+          if course.locations
+            .my-3
+              strong.mr-2
+                +translate("Availability")
+                =":"
+              span.padded-text()
+                each location, index in course.locations
+                  =location.name
+                  if index != course.locations.length - 1
+                    =", "
+                =" & Online"
+        .col-md-6.position-relative
+          if course.requiredLanguages
+            .my-3
+              strong.mr-2
+                +translate("Language")
+                =":"
+              span.padded-text()
+                = course.requiredLanguages 
+          if course.computerKnowledge
+            .my-3
+              strong.mr-2
+                +translate("Computer Knowledge")
+                =":"
+              span.padded-text()=course.computerKnowledge
+          if course.education
+            .my-3
+              strong.mr-2
+                +translate("Education")
+                =":"
+              span.padded-text()=course.education
+          if course.other
+            .my-3
+              strong.mr-2
+                +translate("Other")
+                =":"
+              span.padded-text()=course.other
+    hr.d-md-none
 
-      section.my-5.py-5.position-relative
-        .dotted.d-md-none.blue.w-9.h-9.position-absolute.top-30.left.mr-5
-        .dotted.d-md-none.blue.w-9.h-9.position-absolute.right.bottom.ml-2
-        .container
-          h2: +translate("Financing options")
-          .row
+    section.my-5.py-5.position-relative
+      .dotted.d-md-none.blue.w-9.h-9.position-absolute.top-30.left.mr-5
+      .dotted.d-md-none.blue.w-9.h-9.position-absolute.right.bottom.ml-2
+      .container
+        h2: +translate("Financing options")
+        .row
+          .col-md-4.mb-4
+            .card.shadow-sm.p-3.h-100.d-flex.justify-content-between
+              .d-flex.align-items-center
+                div.text-primary-light
+                  include ../../assets/icons/course_job_interview.svg
+                h2.ml-5.w-3.h-3.bg-primary-light.text-white.d-flex.justify-content-center.align-items-center.font-weight-bold.flex-shrink-0=`01`
+              p: +translate("If you are unemployed or in Kurzarbeit, the course can be 100% financed by the Jobcenter or Agentur für Arbeit.")
+
+          if course.financingoption
             .col-md-4.mb-4
               .card.shadow-sm.p-3.h-100.d-flex.justify-content-between
                 .d-flex.align-items-center
-                  div.text-primary-light
-                    include ../../assets/icons/course_job_interview.svg
-                  h2.ml-5.w-3.h-3.bg-primary-light.text-white.d-flex.justify-content-center.align-items-center.font-weight-bold.flex-shrink-0=`01`
-                p: +translate("If you are unemployed or in Kurzarbeit, the course can be 100% financed by the Jobcenter or Agentur für Arbeit.")
+                  .flex-grow-1.d-flex.flex-column.justify-content-center
+                    include ../../assets/icons/financing_chancen_eg.svg
+                  h2.ml-5.w-3.h-3.bg-primary-light.text-white.d-flex.justify-content-center.align-items-center.font-weight-bold.flex-shrink-0=`02`
+                p: +translate("CHANCEN eG takes over your entire course fee and let’s you pay once you complete the course and find a stable job.")
+            .col-md-4.mb-4
+              .card.shadow-sm.p-3.h-100.d-flex.justify-content-between
+                .d-flex.align-items-center
+                  .flex-grow-1.d-flex.flex-column.justify-content-center.text-primary-light
+                    include ../../assets/icons/credit_card.svg
+                  h2.ml-5.w-3.h-3.bg-primary-light.text-white.d-flex.justify-content-center.align-items-center.font-weight-bold.flex-shrink-0=`03`
+                p: +translate("You can also pay your course immediately or in installments.")
 
-            if course.financingoption
-              .col-md-4.mb-4
-                .card.shadow-sm.p-3.h-100.d-flex.justify-content-between
-                  .d-flex.align-items-center
-                    .flex-grow-1.d-flex.flex-column.justify-content-center
-                      include ../../assets/icons/financing_chancen_eg.svg
-                    h2.ml-5.w-3.h-3.bg-primary-light.text-white.d-flex.justify-content-center.align-items-center.font-weight-bold.flex-shrink-0=`02`
-                  p: +translate("CHANCEN eG takes over your entire course fee and let’s you pay once you complete the course and find a stable job.")
-              .col-md-4.mb-4
-                .card.shadow-sm.p-3.h-100.d-flex.justify-content-between
-                  .d-flex.align-items-center
-                    .flex-grow-1.d-flex.flex-column.justify-content-center.text-primary-light
-                      include ../../assets/icons/credit_card.svg
-                    h2.ml-5.w-3.h-3.bg-primary-light.text-white.d-flex.justify-content-center.align-items-center.font-weight-bold.flex-shrink-0=`03`
-                  p: +translate("You can also pay your course immediately or in installments.")
+    section.pb-200.mt-5.w-100.bg-primary-trans
+      .p-5.position-relative.shadow-sm.overflow-hidden.mb-5
+        .p-md-5.mb-5
+          div.position-absolute.top.left.w-100.h-100.third-transparent
+          .row
+            .col-md-7.order-12.order-md-0.text-left
+              div.my-3.my-y-xl-5.text-center
 
-      section.pb-200.mt-5.w-100.bg-primary-trans
-        .p-5.position-relative.shadow-sm.overflow-hidden.mb-5
-          .p-md-5.mb-5
-            div.position-absolute.top.left.w-100.h-100.third-transparent
-            .row
-              .col-md-7.order-12.order-md-0.text-left
-                div.my-3.my-y-xl-5.text-center
+                a.btn.btn-lg.btn-secondary.mx-3.mb-3.w-100.w-md-auto(href="/signup"): +translate("Apply Now")
+                a.btn.btn-lg.btn-outline-white.mx-3.mb-3.w-100.w-md-auto(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}` ): +translate("Download Course Overview")
 
-                  a.btn.btn-lg.btn-secondary.mx-3.mb-3.w-100.w-md-auto(href="/signup"): +translate("Apply Now")
-                  a.btn.btn-lg.btn-outline-white.mx-3.mb-3.w-100.w-md-auto(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}` ): +translate("Download Course Overview")
-
-        if user && user.admin === "true"
-          div.py-3
-            a.btn.btn-outline-primary(target="_blank" rel="noopener" href='/admin/courses/edit/'+course.slug) Edit course
+      if user && user.admin === "true"
+        div.py-3
+          a.btn.btn-outline-primary(target="_blank" rel="noopener" href='/admin/courses/edit/'+course.slug) Edit course
