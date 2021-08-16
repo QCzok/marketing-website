@@ -177,7 +177,7 @@ const storage = multer.diskStorage({
     next(null, "./temp");
   },
   filename: function(request, file, next) {
-    next(null, file.originalname);
+    next(null, file.originalname.replace(/\s/g, '_'));
   }
 });
 module.exports.uploadImages = multer({
