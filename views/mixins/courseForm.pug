@@ -143,12 +143,16 @@ mixin courseForm
           | ?
       input#startYourClass.form-control(name='startYourClass', type='text', placeholder='startYourClass', value=course && course.startYourClass ? course.startYourClass :"")
 
-    h3.mt-3 Archivements
+    h3.mt-3 
+      = "Archivements"
+      
+      button.btn.btn-secondary.badge.ml-2(type='button', data-container='body', data-toggle='popover',  data-trigger="hover",  data-placement='top', data-content='To remove an archivement, you can remove the title. Then the icon and the description will be also purged and the archivement will not show up')
+        | ?
+      button.btn.btn-secondary.badge.ml-2(type='button', data-container='body', data-toggle='popover',  data-trigger="hover",  data-placement='top', data-content='Split the archivement into steps with a semicolon `;`. Split the archivement-step into the number, the title and the text using a pipe `|`. EG: "01|Basic|learn stuff;02|Advanced|learn more stuff"')
+        | ?
     each archivementGroup, i in courseFormConfig.archivementConfig
       .form-group
         label.d-block(for=archivementGroup.for)=archivementGroup.label
-          button.btn.btn-secondary.badge.ml-2(type='button', data-container='body', data-toggle='popover',  data-trigger="hover",  data-placement='top', data-content='To remove an archivement, you can remove the title. Then the icon and the description will be also purged and the archivement will not show up')
-            | ?
         .d-flex
           if course && course.archivements[i] && course.archivements[i].icon
             img.mw-150.mh-150(alt="course image" src="/images/"+course.archivements[i].icon)

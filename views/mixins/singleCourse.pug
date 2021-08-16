@@ -99,47 +99,42 @@ mixin singleCourse
                       span.counter-count=locals.settings.careersuccesspage_employmentrate ? locals.settings.careersuccesspage_employmentrate : user ? "setting not defined" : ""
                       = "%"
                   p: +translate("Placement rate")
+
     section.position-relative.py-5
-      .position-absolute.top.left.right.bottom.third-transparent
-
-
       .container.container-fluid-courses.position-relative.text-center.px-5
         h5.font-weight-bold.text-muted.text-uppercase.py-3: +translate("Curriculum")
         h2.mb-3: +translate("What will I learn?")
         p.lead.mb-5=course.curriculumSectionSubheading
-      .my-5
-        if course.archivements.filter(t => !!t.description).length > 0 
-          .position-relative.py-5.px-3
-            .position-absolute.top.left.right.bottom.third-transparent.bg-primary-light
-            .row
-              each object, index in course.archivements
-                if object.icon
-                  .col-md-4.mb-4
-                    .affiliate_header.px-4.bg-white.mb-2.mb-md-0.shadow-sm.shadow-md-none(data-toggle='collapse', data-target=`#affiliate_partner${index}`) 
-                      .d-flex.align-items-center.justify-content-between
-                        .py-2
-                          .pr-2
-                            img.h-4.w-4.object-fit-contain(alt=object.description src="/media/pixel.gif" style="background-image: url('/images/"+object.icon+"')")
-                          //- img.h-5.w-5.object-fit-contain(src="/media/azav.png", alt="")
-                        p.border-left.font-weight-bold.p-3.flex-grow-1.m-0=object.title
-                        button.btn.btn-link.p-3.d-md-none(data-toggle='collapse', data-target=`#affiliate_partner${index}`)
-                          .rotate-270
-                            include ../../assets/icons/arrow.svg
-                    .d-none.d-md-block
-                      p=object.description
-                      a.py-3.text-primary-light(href="" data-toggle='collapse', data-target='#affiliate_partner_textblock1')
-                        =__("Learn more")
-                        .ml-2.d-inline-block()
-                        include ../../assets/icons/arrow.svg
-                    .collapse.d-md-none.bg-white.p-4.shadow-sm(id=`affiliate_partner${index}`)
-                      p=object.description
-                      a.py-3.text-primary-light(href="")
-                        =__("Learn more")
-                        .ml-2.d-inline-block()
-                        include ../../assets/icons/arrow.svg
 
-            a.btn.btn-lg.btn-secondary.mb-3.w-100.w-md-auto(href='#' data-toggle='modal', data-target='#contactFormModal'): +translate("Apply Now")
+    .row
+      .col-md-6
+        ul#myTab2.nav.nav-tabs.flex-column(role='tablist')
+          each object, index in course.archivements
+            li.nav-item(role='presentation')
+              a.nav-link(id=`affiliate_partner_${index}-tab` data-toggle='tab' href=`#affiliate_partner_${index}` role='tab' aria-controls=`affiliate_partner_${index}` aria-selected='true' class=`${index === 0 ? `active`: ``}`)
+                img.h-4.w-4.object-fit-contain.mr-3(alt=object.description src="/media/pixel.gif" style="background-image: url('/images/"+object.icon+"')")
+                span= object.title
+      .col-md-6
+        #myTab2Content.tab-content.p-3.position-relative
+          each object, index in course.archivements
+            - archivements_sub_items = object.description.split(";")
+            .tab-pane.fade(id=`affiliate_partner_${index}` class=`tab-pane fade ${index === 0 ? `show active`: ``}` role='tabpanel' aria-labelledby=`affiliate_partner_${index}-tab`)
+              .position-absolute.top.left.right.bottom.third-transparent.bg-primary-light.z-minus
+              each sub_item, index2 in archivements_sub_items
+                .bg-white.mb-2.shadow-sm.shadow-md-none
+                  .d-flex.align-items-center.justify-content-between
+                    p.border-right.font-weight-bold.p-3.flex-grow-1.m-0=sub_item.split("|")[0]
+                    .p-3= sub_item.split("|")[1]
+                    button.btn.btn-link.p-3.d-md-none(data-toggle='collapse', data-target=`#affiliate_partner_${index}_${index2}`)
+                      .rotate-270
+                        include ../../assets/icons/arrow.svg
+                  .d-none.d-md-block
+                    .p-3
+                      = sub_item.split("|")[2]
+                  .collapse.d-md-none.bg-white.p-4.shadow-sm(id=`affiliate_partner_${index}_${index2}`)
+                    p=sub_item.split("|")[2]
 
+    section
       .position-relative
         .d-md-none.bg-primary-light.w-3.h-3.position-absolute
         .d-md-none.bg-light-blue.position-absolute.z-minus.w-3.h-3.mt-3.ml-4

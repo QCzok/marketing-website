@@ -2038,3 +2038,26 @@ input[type=number] {
 .dynamicinputform.fade-out {
   animation: ease 0s slideInFromReverse;
 }
+
+a[data-toggle="tab"] { 
+  span {
+    position: relative;
+    &:after{
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      height: 3px;
+      transition: width .3s ease;
+      width: 0;
+      background-color: $yellow;
+    }
+  }
+  &.active {
+    span {
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+}
