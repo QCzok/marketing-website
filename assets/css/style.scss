@@ -1913,6 +1913,9 @@ body[class*="pages-"] {
   &.white {
     background-image: url("~/media/dot_white.svg");
   }
+  &.yellow {
+    background-image: url("~/media/dot_yellow.svg");
+  }
 }
 .grayscale {
   filter: grayscale(1);
@@ -2060,4 +2063,7 @@ a[data-toggle="tab"] {
       }
     }
   }
+}
+.tab-pane {
+  animation: ease .3s slideInFromTop;
 }

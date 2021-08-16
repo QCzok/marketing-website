@@ -60,6 +60,7 @@ mixin singleCourse
       section#section1
         .row.row-courses
           .col-md-4.bg-white.d-flex.flex-column.justify-content-center.position-relative.z-1
+            .dotted.w-4.h-4.position-absolute.top.left-10.iron.z-minus
             .justify-content-center.d-flex.position-relative
               img.img-fluid.mb-n5(alt=course.description src="/images/"+course.subicon)
               .w-100.h-100.position-absolute.bottom.left.bg-yellow.third-transparent.z-minus.shift-left-top
@@ -101,38 +102,43 @@ mixin singleCourse
                   p: +translate("Placement rate")
 
     section.position-relative.py-5
-      .container.container-fluid-courses.position-relative.text-center.px-5
-        h5.font-weight-bold.text-muted.text-uppercase.py-3: +translate("Curriculum")
+      .container.container-fluid-courses.position-relative.px-5
+
+        .dotted.w-4.h-4.position-absolute.top.left.iron.z-minus
         h2.mb-3: +translate("What will I learn?")
         p.lead.mb-5=course.curriculumSectionSubheading
 
-    .row
-      .col-md-6
-        ul#myTab2.nav.nav-tabs.flex-column(role='tablist')
-          each object, index in course.archivements
-            li.nav-item(role='presentation')
-              a.nav-link(id=`affiliate_partner_${index}-tab` data-toggle='tab' href=`#affiliate_partner_${index}` role='tab' aria-controls=`affiliate_partner_${index}` aria-selected='true' class=`${index === 0 ? `active`: ``}`)
-                img.h-4.w-4.object-fit-contain.mr-3(alt=object.description src="/media/pixel.gif" style="background-image: url('/images/"+object.icon+"')")
-                span= object.title
-      .col-md-6
-        #myTab2Content.tab-content.p-3.position-relative
-          each object, index in course.archivements
-            - archivements_sub_items = object.description.split(";")
-            .tab-pane.fade(id=`affiliate_partner_${index}` class=`tab-pane fade ${index === 0 ? `show active`: ``}` role='tabpanel' aria-labelledby=`affiliate_partner_${index}-tab`)
-              .position-absolute.top.left.right.bottom.third-transparent.bg-primary-light.z-minus
-              each sub_item, index2 in archivements_sub_items
-                .bg-white.mb-2.shadow-sm.shadow-md-none
-                  .d-flex.align-items-center.justify-content-between
-                    p.border-right.font-weight-bold.p-3.flex-grow-1.m-0=sub_item.split("|")[0]
-                    .p-3= sub_item.split("|")[1]
-                    button.btn.btn-link.p-3.d-md-none(data-toggle='collapse', data-target=`#affiliate_partner_${index}_${index2}`)
-                      .rotate-270
-                        include ../../assets/icons/arrow.svg
-                  .d-none.d-md-block
-                    .p-3
-                      = sub_item.split("|")[2]
-                  .collapse.d-md-none.bg-white.p-4.shadow-sm(id=`affiliate_partner_${index}_${index2}`)
-                    p=sub_item.split("|")[2]
+    .container
+      .row
+        .col-md-6.pt-md-5
+          ul#myTab2.nav.flex-column(role='tablist')
+            each object, index in course.archivements.filter(a => a.title && a.description)
+              li.nav-item.mb-5(role='presentation')
+                a.nav-link(id=`affiliate_partner_${index}-tab` data-toggle='tab' href=`#affiliate_partner_${index}` role='tab' aria-controls=`affiliate_partner_${index}` aria-selected='true' class=`${index === 0 ? `active`: ``}`)
+                  img.h-4.w-4.object-fit-contain.mr-3(alt=object.description src="/media/pixel.gif" style="background-image: url('/images/"+object.icon+"')")
+                  span.font-weight-bold.text-dark= object.title
+        .col-md-6.position-relative.p-0
+
+          .dotted.w-15.h-15.position-absolute.top.right.yellow.mt-n4.mr-n4.z-minus
+          .dotted.w-15.h-15.position-absolute.bottom.left.iron.mb-n4.ml-n4.z-minus
+          .position-absolute.top.left.right.bottom.bg-primary-trans.z-minus
+          #myTab2Content.tab-content.position-relative
+            each object, index in course.archivements.filter(a => a.title && a.description)
+              - archivements_sub_items = object.description.split(";")
+              .tab-pane.fade.p-md-5(id=`affiliate_partner_${index}` class=`${index === 0 ? `show active`: ``}` role='tabpanel' aria-labelledby=`affiliate_partner_${index}-tab`)
+                each sub_item, index2 in archivements_sub_items
+                  .bg-white.shadow-sm.shadow-md-none(class=`${index2 != archivements_sub_items.length -1 ? `mb-5`: ``}`)
+                    .d-flex.align-items-center
+                      h3.h2.text-primary-light.border-right.font-weight-bold.p-3.m-0=sub_item.split("|")[0]
+                      .p-3.font-weight-bold= sub_item.split("|")[1]
+                      button.btn.btn-link.p-3.d-md-none(data-toggle='collapse', data-target=`#affiliate_partner_${index}_${index2}`)
+                        .rotate-270
+                          include ../../assets/icons/arrow.svg
+                    .d-none.d-md-block
+                      .px-3.pb-3
+                        = sub_item.split("|")[2]
+                    .collapse.d-md-none.bg-white.p-4.shadow-sm(id=`affiliate_partner_${index}_${index2}`)
+                      p=sub_item.split("|")[2]
 
     section
       .position-relative
