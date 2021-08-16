@@ -229,26 +229,26 @@ module.exports.contact = async (req, res, next) => {
         }
         return acc
       }, {})
-  
+
       Object.keys(filteredPayload).map(i => properties.push({ property: i, value: filteredPayload[i] }))
 
-      if(location){
-        properties.push({property: 'state_de_', value: location.name } )  
+      if (location) {
+        properties.push({ property: 'state_de_', value: location.name })
       }
-      if(req.session.utmParams && req.session.utmParams.utm_source){
-        properties.push({property: 'utm_source', value: req.session.utmParams.utm_source} ) 
+      if (req.session.utmParams && req.session.utmParams.utm_source) {
+        properties.push({ property: 'utm_source', value: req.session.utmParams.utm_source })
       }
-      if(req.session.utmParams && req.session.utmParams.utm_medium){
-        properties.push({property: 'utm_medium', value: req.session.utmParams.utm_medium} ) 
+      if (req.session.utmParams && req.session.utmParams.utm_medium) {
+        properties.push({ property: 'utm_medium', value: req.session.utmParams.utm_medium })
       }
-      if(req.session.utmParams && req.session.utmParams.utm_campaign){
-        properties.push({property: 'utm_campaign', value: req.session.utmParams.utm_campaign} ) 
+      if (req.session.utmParams && req.session.utmParams.utm_campaign) {
+        properties.push({ property: 'utm_campaign', value: req.session.utmParams.utm_campaign })
       }
-      if(req.session.utmParams && req.session.utmParams.utm_content){
-        properties.push({property: 'utm_content', value: req.session.utmParams.utm_content} ) 
+      if (req.session.utmParams && req.session.utmParams.utm_content) {
+        properties.push({ property: 'utm_content', value: req.session.utmParams.utm_content })
       }
-      if(req.session.utmParams && req.session.utmParams.utm_term){
-        properties.push({property: 'utm_term', value: req.session.utmParams.utm_term} ) 
+      if (req.session.utmParams && req.session.utmParams.utm_term) {
+        properties.push({ property: 'utm_term', value: req.session.utmParams.utm_term })
       }
 
       var options = {
