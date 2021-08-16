@@ -6,92 +6,104 @@ mixin singleCourse
       .dotted.d-md-none.red.w-6.h-6.rounded-circle.position-absolute.right.mr-5.top-30
       .dotted.d-md-none.blue.w-7.h-7.rounded-circle.position-absolute.left.bottom.ml-3.mb-5
       .row.py-5
-        .col-md-6.bg-panel.right.py-5.px-5.pl-md-0
-          h1.display-1.my-3.mt-y-xl-5.word-wrap-break-word()=course.headline
-          p.lead.mb-3= course.courselength
-          p.lead.mb-3.pt-3()=course.subheading
-          div.my-3.my-y-xl-5
-            a.btn.btn-secondary.px-4.mt-3.mt-y-xl-5(href="/signup"): +translate("Apply Now")
+        .col-md-6.bg-panel.right.py-5
+          .py-5
+            .py-5
+              h1.display-1.my-3.mt-y-xl-5.word-wrap-break-word()=course.headline
+              p.lead.mb-3= course.courselength
+              p.lead.mb-3.pt-3()=course.subheading
+              div.my-3.my-y-xl-5
+                .mt-3.mt-y-xl-5
+                  a.btn.btn-secondary.px-4.mb-4(href="/signup"): +translate("Apply Now")
+                  if course.curriculumPdf
+                    a.btn.btn-link.border-0.mb-4(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
+                      div.h-2.w-2.d-inline-block.mr-2
+                        include ../../assets/icons/download.svg
+                      +translate("Download Course Overview")
 
+          - randompartners = [...partners.filter(p => p.is_alumni_employer)]
+          - for (let i = randompartners.length - 1; i > 0; i--) {
+              - const j = Math.floor(Math.random() * (i + 1));
+              - [randompartners[i], randompartners[j]] = [randompartners[j], randompartners[i]];
+          - }  
+          .container
+            h6.mb-3.font-weight-bold.text-muted: +translate("Where Our Graduates Work")
+            .row.justify-content-center
+              each partner, index in randompartners.splice(0,4)
+                .col-6.col-md-3.partner.h-4.flex-column.align-items-center.justify-content-center(class=index > 3 ? "d-none d-lg-flex" : "d-flex")
+                  img.partners-logo.w-100.px-2(alt=partner.title, src="/images/" + partner.partnerlogo, )
         .col-md-6.py-5.py-md-0
           .floatings.h-100
             .w-100.align-items-end.h-100.d-flex.flex-column
-              .p-4.position-relative
-                .d-flex.flex-column.justify-content-center.flex-grow-1.w-100
-                  .bg-yellow.w-6.h-6.position-absolute.top.left.rounded-circle
-                  .bg-yellow.w-3.h-3.position-absolute.bottom.left
-                  .bg-yellow.w-4.h-4.position-absolute.bottom-20.right.rounded-circle
-                  if course.icon
-                    img.object-fit-cover.img-fluid(alt=course.description src="/images/"+course.icon)
-                  else
-                    img.w-100(src="/media/pixel.gif" alt=course.headline style=`background-image: url('${course.icon ? `/images/` + course.icon : `/media/circuit-board.svg`}')`)
+              .p-4.position-relative.w-100.h-100
+                .d-flex.flex-column.justify-content-center.flex-grow-1.w-100.h-100
+                  .w-3.h-3.position-absolute.top.right.bg-primary.z-minus
+                  .h-100
+                    .position-relative.h-100.d-flex.flex-column.justify-content-center
+                      .w-50.h-50.position-absolute.top.left.bg-light-blue.z-minus
+                      .w-50.h-50.position-absolute.bottom.right.bg-primary.z-minus
+                      .dotted.w-14.h-14.position-absolute.top-5.right.iron.z-minus.mr-3
+                      .dotted.w-4.h-4.position-absolute.bottom.right-20.iron.z-minus.mb-n5
+                      .p-5
+                        .px-3
+                          .position-relative
+                            .bg-yellow.w-6.h-6.position-absolute.top.left.rounded-circle.shift-left-top
+                            .bg-yellow.w-3.h-3.position-absolute.bottom.left.shift-down-left
+                            .bg-yellow.w-4.h-4.w-50.h-50.position-absolute.bottom-20.right.rounded-circle.shift-right-down
+                            if course.icon
+                              img.object-fit-cover.img-fluid(alt=course.description src="/images/"+course.icon)
+                            else
+                              img.w-100(src="/media/pixel.gif" alt=course.headline style=`background-image: url('${course.icon ? `/images/` + course.icon : `/media/circuit-board.svg`}')`)
             if course.courselength
               .row
                 .p-4.font-weight-bold.align-self-end=course.courselength
-    - randompartners = [...partners.filter(p => p.is_alumni_employer)]
-    - for (let i = randompartners.length - 1; i > 0; i--) {
-        - const j = Math.floor(Math.random() * (i + 1));
-        - [randompartners[i], randompartners[j]] = [randompartners[j], randompartners[i]];
-    - }  
-    .container.py-5
-      h6.text-center.mb-3.font-weight-bold.text-muted: +translate("Where Our Graduates Work")
-      .row.justify-content-center
-        each partner, index in randompartners.splice(0,6)
-          .col-3.col-md-2.partner.h-4.flex-column.align-items-center.justify-content-center(class=index > 3 ? "d-none d-lg-flex" : "d-flex")
-            .p-0.p-lg-2
-              img.partners-logo.w-100.px-0.px-lg-3(alt=partner.title, src="/images/" + partner.partnerlogo, )
 
-    .bg-primary-light.p-5
-      div.my-3.my-y-xl-5.text-center
-        a.btn.btn-lg.btn-secondary.mx-3.mb-3.w-100.w-md-auto(href="/signup"): +translate("Apply Now")
-        a.btn.btn-lg.btn-outline-white.mx-3.mb-3.w-100.w-md-auto(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}` ): +translate("Download Course Overview")
   .position-relative.mb-3.overflow-hidden
     .container-fluid.position-relative
       section#section1
         .row.row-courses
-          .col-md-7.px-5.bg-white.py-5
+          .col-md-3.px-5.bg-white.d-flex.flex-column.justify-content-end.mt-md-n5
+            span
+            img.img-fluid(alt=course.description src="/images/"+course.subicon)
+            .w-50.h-50.position-absolute.bottom.left.bg-yellow.half-transparent
+          .col-md-7.px-5.bg-white.py-5.border-right.border-grey
             .pt-xl-5
               h5.text-left.font-weight-bold.text-muted.text-uppercase.py-3: +translate("Overview")
               h2.mt-3.mb-3.text-left=course.title
               p.mb-0.lead.text-left=course.subtitle
-          .col-md-5.d-none.d-md-flex.px-5.bg-white.d-flex.flex-column.justify-content-end
-          .col-md-7.d-none.d-md-flex.px-5.bg-white
-          .col-md-5.px-5.bg-white.d-flex.flex-column.justify-content-end.mt-md-n5
-            span
-            img.img-fluid(alt=course.description src="/images/"+course.subicon)
 
-    div.bg-primary-light.mb-5.py-md-4
-      .container.section-counter
-        .col-12
-          .row.text-white.py-4
-            .col-6.col-md-3.my-4.my-md-0.border-white.border-right.d-flex.flex-column.justify-content-center
-              .counter-item
-                .counter-number.font-weight-bold
-                  h2.display-2.text-white
-                    span.counter-count=locals.settings.careersuccesspage_alumni ? locals.settings.careersuccesspage_alumni : user ? "setting not defined" : ""
-                    = "+"
-                h4.text-white.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("DCI Alumni")
-            .col-6.col-md-3.my-4.my-md-0.border-white.border-left.border-right-0.border-right-md.d-flex.flex-column.justify-content-center
-              .counter-item
-                .counter-number.font-weight-bol
-                  h2.display-2.text-white
-                    span.counter-count=locals.settings.careersuccesspage_students ? locals.settings.careersuccesspage_students : user ? "setting not defined" : ""
-                    = "+"
-                h4.text-white.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto
-                  +translate("DCI Students")
-            .col-6.col-md-3.my-4.my-md-0.border-white.border-right.border-left-0.border-left-md.d-flex.flex-column.justify-content-center
-              .counter-item
-                .counter-number.font-weight-bold
-                  h2.display-2.text-white
-                    span.counter-count=locals.settings.careersuccesspage_companypartners ? locals.settings.careersuccesspage_companypartners : user ? "setting not defined" : ""
-                    = "+"
-                h4.text-white.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("Company Partners")
-            .col-6.col-md-3.my-4.my-md-0.border-white.border-left.d-flex.flex-column.justify-content-center
-              .counter-item
-                .counter-number.font-weight-bold
-                  h2.display-2.text-white
-                    span.counter-count=locals.settings.careersuccesspage_employmentrate ? locals.settings.careersuccesspage_employmentrate : user ? "setting not defined" : ""
-                    = "%"
+          .col-md-2.py-5
+            div.mb-5.py-md-4
+              .container.section-counter
+                .d-flex.flex-column.py-4
+                  .my-4.d-flex.flex-column.justify-content-center
+                    .counter-item
+                      .counter-number.font-weight-bold
+                        h2.display-2
+                          span.counter-count=locals.settings.careersuccesspage_alumni ? locals.settings.careersuccesspage_alumni : user ? "setting not defined" : ""
+                          = "+"
+                      h4.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("DCI Alumni")
+                  .my-4.d-flex.flex-column.justify-content-center
+                    .counter-item
+                      .counter-number.font-weight-bol
+                        h2.display-2
+                          span.counter-count=locals.settings.careersuccesspage_students ? locals.settings.careersuccesspage_students : user ? "setting not defined" : ""
+                          = "+"
+                      h4.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto
+                        +translate("DCI Students")
+                  .my-4.d-flex.flex-column.justify-content-center
+                    .counter-item
+                      .counter-number.font-weight-bold
+                        h2.display-2
+                          span.counter-count=locals.settings.careersuccesspage_companypartners ? locals.settings.careersuccesspage_companypartners : user ? "setting not defined" : ""
+                          = "+"
+                      h4.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("Company Partners")
+                  .my-4.d-flex.flex-column.justify-content-center
+                    .counter-item
+                      .counter-number.font-weight-bold
+                        h2.display-2
+                          span.counter-count=locals.settings.careersuccesspage_employmentrate ? locals.settings.careersuccesspage_employmentrate : user ? "setting not defined" : ""
+                          = "%"
                 h4.text-white.hyphen.w-100.font-weight-bold.shadowed.center.w-min-width.m-0-auto: +translate("Employment rate within 6 months")
     section.position-relative.py-5
       .position-absolute.top.left.right.bottom.third-transparent

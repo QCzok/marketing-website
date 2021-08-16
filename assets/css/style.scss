@@ -1118,7 +1118,7 @@ body:not(.admin) {
   transform: translate(50%, 50%);
 }
 .shift-down-left {
-  transform: translate(50%, -50%);
+  transform: translate(-50%, 50%);
 }
 .shift-left-top {
   transform: translate(-50%, -50%);
@@ -1210,21 +1210,21 @@ div[class*=" #{$class-slug}"] {
     max-height: none!important;
   }
 }
-@for $i from 0 through 10 {
-  .top-#{ $i * 10 } {
-    top: 10% * $i;
+@for $i from 0 through 20 {
+  .top-#{ $i * 5 } {
+    top: 5% * $i;
   }
 
-  .left-#{ $i * 10 } {
-    left: 10% * $i;
+  .left-#{ $i * 5 } {
+    left: 5% * $i;
   }
 
-  .right-#{ $i * 10 } {
-    right: 10% * $i;
+  .right-#{ $i * 5 } {
+    right: 5% * $i;
   }
 
-  .bottom-#{ $i * 10 } {
-    bottom: 10% * $i;
+  .bottom-#{ $i * 5 } {
+    bottom: 5% * $i;
   }
 
 }
