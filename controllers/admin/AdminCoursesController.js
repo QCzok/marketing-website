@@ -239,7 +239,6 @@ exports.resizeImages = async (request, response, next) => {
       }
       if (singleFile[0].mimetype.startsWith("image/")) {
         const image = await jimp.read(singleFile[0].path);
-        await image.cover(500, 500);
         await image.write(
             path.resolve(
               process.env.IMAGE_UPLOAD_DIR,
@@ -442,7 +441,7 @@ module.exports.updateCourse = async function(req, res) {
 
   try {
     await course.save();
-    req.flash("success", `Successfully updated ${course.title}`);
+    req.flash("success", `Successfully updated ${course.slug}`);
     res.redirect("/admin/courses/edit/" + course.slug);
   } catch (error) {
     req.flash("danger", JSON.stringify(error));

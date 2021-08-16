@@ -7,23 +7,27 @@ mixin singleCourse
       .dotted.d-md-none.blue.w-7.h-7.rounded-circle.position-absolute.left.bottom.ml-3.mb-5
       .row.py-5
         .col-md-6.bg-panel.right.py-5.px-5.pl-md-0
-          h1.display-1.my-3.mt-y-xl-5.word-wrap-break-word.text-primary-light()=course.headline
+          h1.display-1.my-3.mt-y-xl-5.word-wrap-break-word()=course.headline
           p.lead.mb-3= course.courselength
           p.lead.mb-3.pt-3()=course.subheading
           div.my-3.my-y-xl-5
-            a.btn.btn-white.px-4.mt-3.mt-y-xl-5(href="/signup"): +translate("Apply Now")
+            a.btn.btn-secondary.px-4.mt-3.mt-y-xl-5(href="/signup"): +translate("Apply Now")
 
         .col-md-6.py-5.py-md-0
           .floatings.h-100
-            .w-100.px-lg-5.align-items-end.h-100.justify-content-end.d-flex.flex-column
-              .d-flex.flex-column.justify-content-center.flex-grow-1.w-100.pb-3.pb-xl-5.px-5.px-md-5
-                if course.icon
-                  img.object-fit-cover.img-fluid(alt=course.description src="/images/"+course.icon)
-                else
-                  img.w-100(src="/media/pixel.gif" alt=course.headline style=`background-image: url('${course.icon ? `/images/` + course.icon : `/media/circuit-board.svg`}')`)
-              if course.courselength
-                .row
-                  .p-4.font-weight-bold.align-self-end=course.courselength
+            .w-100.align-items-end.h-100.d-flex.flex-column
+              .p-4.position-relative
+                .d-flex.flex-column.justify-content-center.flex-grow-1.w-100
+                  .bg-yellow.w-6.h-6.position-absolute.top.left.rounded-circle
+                  .bg-yellow.w-3.h-3.position-absolute.bottom.left
+                  .bg-yellow.w-4.h-4.position-absolute.bottom-20.right.rounded-circle
+                  if course.icon
+                    img.object-fit-cover.img-fluid(alt=course.description src="/images/"+course.icon)
+                  else
+                    img.w-100(src="/media/pixel.gif" alt=course.headline style=`background-image: url('${course.icon ? `/images/` + course.icon : `/media/circuit-board.svg`}')`)
+            if course.courselength
+              .row
+                .p-4.font-weight-bold.align-self-end=course.courselength
     - randompartners = [...partners.filter(p => p.is_alumni_employer)]
     - for (let i = randompartners.length - 1; i > 0; i--) {
         - const j = Math.floor(Math.random() * (i + 1));

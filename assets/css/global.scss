@@ -63,6 +63,9 @@ $theme-colors: (
 .bg-light-blue {
   background-color: $primary-trans;
 }
+.bg-yellow {
+  background-color: $yellow;
+}
 
 .bg-md-light-blue {
   @include media-breakpoint-up(md) {
