@@ -102,9 +102,8 @@ mixin singleCourse
                   p: +translate("Placement rate")
 
     section.position-relative.py-5
-      .container.container-fluid-courses.position-relative.px-5
-
-        .dotted.w-4.h-4.position-absolute.top.left.iron.z-minus
+      .container.position-relative
+        .dotted.w-4.h-4.position-absolute.top.left.iron.z-minus.ml-n4
         h2.mb-3: +translate("What will I learn?")
         p.lead.mb-5=course.curriculumSectionSubheading
 
@@ -140,36 +139,38 @@ mixin singleCourse
                     .collapse.d-md-none.bg-white.p-4.shadow-sm(id=`affiliate_partner_${index}_${index2}`)
                       p=sub_item.split("|")[2]
 
-    section
-      .position-relative
+    section.container.py-5
+      .position-relative.py-5
         .d-md-none.bg-primary-light.w-3.h-3.position-absolute
         .d-md-none.bg-light-blue.position-absolute.z-minus.w-3.h-3.mt-3.ml-4
-        if course.features.filter(t => !!t.title).length > 0   
-          section.my-5.pt-5.container.container-fluid-courses
-            h2: +translate("What more do we offer?")
-            p.lead
-            +translate("We offer much more than just teaching and hacking, such as")
-            = ":"
-
-          .py-5.position-relative
-            .bg-primary-trans.position-absolute.w-20.w-lg-25.h-20.h-lg-25.right-md-0.right.top-0.mb-5.z-minus
-            .bg-primary-trans.position-absolute.w-20.w-lg-25.h-20.h-lg-25.left.bottom-50.mb-5.shift-bottom-percent.z-minus
-            .bg-primary-trans.position-absolute.w-20.w-lg-25.h-20.h-lg-25.right-md-0.right.bottom-0.bottom-md-0.mb-5.z-minus
-            .my-0.container.container-fluid-courses
-              each object in course.features
-                if object.icon
-                  .card.p-3.mb-5.shadow-sm
-                    .row
-                      .col-3.text-center.px-0.py-3
-                        .pr-3
-                          img.img-fluid.h-100(src="/images/"+object.icon, alt=object.title)
-                      .col-9.position-relative.d-flex.align-items-center
-                        .row.bg-panel.left.third-transparent.z-minus
-                        .p-3.border-left.border-muted
-                          .p-md-4.position-relative
-                            h3.text-left=object.title
-                      .col-12
-                        p.text-left.lead=object.subtitle
+        section.mb-5
+          h2: +translate("What more do we offer?")
+          p.lead
+          +translate("We offer much more than just teaching and hacking, such as")
+          = ":"
+        .row
+          .col-md-8
+            if course.features.filter(t => !!t.title).length > 0   
+              .position-relative
+                .bg-primary-trans.position-absolute.right-80.left-20.top-20.mb-5.z-minus.h-50.w-100
+                .my-0
+                  .row
+                    each object in course.features
+                      if object.icon
+                        .col-md-6.p-3.mb-3
+                          .card.shadow-sm.bg-white.h-100.p-3
+                            .row
+                              .col-3.text-center.py-3.pr-1
+                                img.img-fluid.h-100(src="/images/"+object.icon, alt=object.title)
+                              .col-9.position-relative.d-flex.align-items-center.border-left.border-muted
+                                .p-md-2.position-relative
+                                  h5=object.title
+                              .col-12
+                                p.mb-0=object.subtitle
+          .col-md-4
+            .dotted.w-5.h-5.position-absolute.top.right-40.yellow.mt-n4.mr-n4.z-minus
+            .dotted.w-15.h-15.position-absolute.bottom-10.right.iron.mb-n4.mr-n4.z-minus
+            img.w-100.h-100.object-fit-contain.d-none.d-md-block(alt=__( "Where Our Graduates Work" ) src="/media/leandro.jpg" )
 
 
       section#youtube
