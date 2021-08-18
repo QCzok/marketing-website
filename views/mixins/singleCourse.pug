@@ -26,7 +26,7 @@ mixin singleCourse
               - const j = Math.floor(Math.random() * (i + 1));
               - [randompartners[i], randompartners[j]] = [randompartners[j], randompartners[i]];
           - }  
-          .container
+          .container.d-none.d-md-block
             h6.mb-3.font-weight-bold.text-muted: +translate("Where Our Graduates Work")
             .row.justify-content-center
               each partner, index in randompartners.splice(0,4)
