@@ -1,17 +1,17 @@
 ::selection {
-  background-color: $primary;
+  background-color: $primary-light;
   color: #fff;
 }
 .bg-primary ::selection {
   background-color: #fff;
-  color: $primary;
+  color: $primary-light;
 }
 .bg-section ::selection {
-  background-color: $primary;
+  background-color: $primary-light;
   color: #fff;
 }
 ::-moz-selection {
-  background-color: $primary;
+  background-color: $primary-light;
   color: #fff;
 }
 body {

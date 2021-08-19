@@ -217,6 +217,9 @@ body:not(.admin) .btn:not(.btn-lg) {
 .btn-outline-white{
   @include button-variant(white, $blue, $blue);
 }
+.btn-outline-white-transparent {
+  @include button-variant(transparent, white, $blue);
+}
   .nav-pills .nav-link:hover,
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link:hover {
@@ -1792,6 +1795,11 @@ body[class*="pages-"] {
     &:active {
       color: white !important;
     }
+  }
+}
+.text-md-dark {
+  @include media-breakpoint-up(md) {
+    color: $dark !important;
   }
 }
 .bg-md-white {

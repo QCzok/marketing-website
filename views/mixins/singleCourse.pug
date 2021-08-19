@@ -1,22 +1,32 @@
 mixin singleCourse
   .jumbotron.jumbotron-fluid.mb-0.p-0.z-1.position-relative
     .container-md
-      .d-md-none.bg-primary-light.w-5.h-5.position-absolute.ml-n3
-      .d-md-none.bg-light-blue.position-absolute.z-minus.w-5.h-5.mt-3.ml-3
-      .dotted.d-md-none.red.w-6.h-6.rounded-circle.position-absolute.right.mr-5.top-30
+      .d-md-none.right.bg-primary-light.w-3.h-3.position-absolute.rounded-circle.mr-4.mt-n4
+      .d-md-none.position-absolute.right.bg-light-blue.w-3.h-3
+      .dotted.d-md-none.red.w-6.h-6.rounded-circle.position-absolute.left.mr-5.top-5.ml-n5
       .dotted.d-md-none.blue.w-7.h-7.rounded-circle.position-absolute.left.bottom.ml-3.mb-5
-      .row.py-5
-        .col-md-6.bg-panel.right.py-5
+      .row.py-md-5
+        .col-md-6.bg-panel.right.py-md-5
           .py-5
             .py-5
-              h1.display-1.my-3.mt-y-xl-5.word-wrap-break-word()=course.headline
-              p.lead.mb-3= course.courselength
-              p.lead.mb-3.pt-3()=course.subheading
-              div.my-3.my-y-xl-5
-                .mt-3.mt-y-xl-5
-                  a.btn.btn-secondary.px-4.mb-4(href="/signup"): +translate("Apply Now")
+              .pb-5
+                .pb-5
+                  h1.display-1.my-3.mt-y-xl-5.word-wrap-break-word.text-primary-light.text-md-dark=course.headline
+                  p.lead.mb-3= course.courselength
+                  p.lead.mb-3.pt-3()=course.subheading
+                  .d-md-none.left.bg-primary-light.w-3.h-3.position-absolute.rounded-circle
+                  .d-md-none.position-absolute.left.bg-light-blue.w-3.h-3.ml-4.mt-4
+              div.mt-5.mb-3.my-xl-5.position-relative.py-5.px-3.px-md-0.row
+                .bg-primary-light.position-absolute.top.left.w-100.h-100.d-md-none
+                .mt-3.mt-xl-5.w-100
+                  a.btn.btn-secondary.px-4.mb-4.w-100.w-md-auto.py-3(href="/signup"): +translate("Apply Now")
                   if course.curriculumPdf
-                    a.btn.btn-link.border-0.mb-4(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
+                    a.btn.btn-outline-white-transparent.mb-4.w-100.w-md-auto.d-md-none.py-3(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
+                      div.h-2.w-2.d-inline-block.mr-2
+                        include ../../assets/icons/download.svg
+                      +translate("Download Course Overview")
+
+                    a.btn.btn-link.mb-4.w-100.w-md-auto.d-none.d-md-inline-block.py-3(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
                       div.h-2.w-2.d-inline-block.mr-2
                         include ../../assets/icons/download.svg
                       +translate("Download Course Overview")
@@ -32,7 +42,7 @@ mixin singleCourse
               each partner, index in randompartners.splice(0,4)
                 .col-6.col-md-3.partner.h-4.flex-column.align-items-center.justify-content-center(class=index > 3 ? "d-none d-lg-flex" : "d-flex")
                   img.partners-logo.w-100.px-2(alt=partner.title, src="/images/" + partner.partnerlogo, )
-        .col-md-6.py-5.py-md-0
+        .col-md-6.py-5.py-md-0.d-none.d-md-flex
           .floatings.h-100
             .w-100.align-items-end.h-100.d-flex.flex-column
               .p-4.position-relative.w-100.h-100
@@ -61,16 +71,16 @@ mixin singleCourse
         .row.row-courses
           .col-md-4.bg-white.d-flex.flex-column.justify-content-center.position-relative.z-1
             .dotted.w-4.h-4.position-absolute.top.left-10.iron.z-minus
+            h2.mt-3.mb-3.text-left.d-md-none=course.title
             .justify-content-center.d-flex.position-relative
               img.img-fluid.mb-n5(alt=course.description src="/images/"+course.subicon)
-              .w-100.h-100.position-absolute.bottom.left.bg-yellow.third-transparent.z-minus.shift-left-top
+              .d-none.d-md-block.w-100.h-100.position-absolute.bottom.left.bg-yellow.third-transparent.z-minus.shift-left-top
           .col-md-6.bg-white.py-5.d-flex.flex-column.justify-content-center
             .pr-5.border-right.border-grey
-              h5.text-left.font-weight-bold.text-muted.text-uppercase.py-3: +translate("Overview")
-              h2.mt-3.mb-3.text-left=course.title
+              h2.mt-3.mb-3.text-left.d-none.d-md-bloc=course.title
               p.mb-0.lead.text-left=course.subtitle
 
-          .col-md-2
+          .col-md-2.bg-primary-light.bg-md-white
             .d-flex.flex-column.text-center.py-4
               .my-4.d-flex.flex-column.justify-content-center
                 .counter-item
