@@ -81,35 +81,35 @@ mixin singleCourse
               p.mb-0.lead.text-left=course.subtitle
 
           .col-md-2.bg-primary-light.bg-md-white
-            .d-flex.flex-column.text-center.py-4
-              .my-4.d-flex.flex-column.justify-content-center
+            .row.text-center.py-4
+              .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-right.border-white.border-md-0
                 .counter-item
                   .counter-number.font-weight-bold
-                    h2.display-2
+                    h2.display-2.text-white.text-md-dark
                       span.counter-count=locals.settings.careersuccesspage_alumni ? locals.settings.careersuccesspage_alumni : user ? "setting not defined" : ""
                       = "+"
-                  p: +translate("DCI Alumni")
-              .my-4.d-flex.flex-column.justify-content-center
+                  p.text-white.text-md-dark: +translate("DCI Alumni")
+              .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-left.border-white.border-md-0
                 .counter-item
                   .counter-number.font-weight-bol
-                    h2.display-2
+                    h2.display-2.text-white.text-md-dark
                       span.counter-count=locals.settings.careersuccesspage_students ? locals.settings.careersuccesspage_students : user ? "setting not defined" : ""
                       = "+"
-                  p: +translate("DCI Students")
-              .my-4.d-flex.flex-column.justify-content-center
+                  p.text-white.text-md-dark: +translate("DCI Students")
+              .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-right.border-white.border-md-0
                 .counter-item
                   .counter-number.font-weight-bold
-                    h2.display-2
+                    h2.display-2.text-white.text-md-dark
                       span.counter-count=locals.settings.careersuccesspage_companypartners ? locals.settings.careersuccesspage_companypartners : user ? "setting not defined" : ""
                       = "+"
-                  p: +translate("Company Partners")
-              .my-4.d-flex.flex-column.justify-content-center
+                  p.text-white.text-md-dark: +translate("Company Partners")
+              .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-left.border-white.border-md-0
                 .counter-item
                   .counter-number.font-weight-bold
-                    h2.display-2
+                    h2.display-2.text-white.text-md-dark
                       span.counter-count=locals.settings.careersuccesspage_employmentrate ? locals.settings.careersuccesspage_employmentrate : user ? "setting not defined" : ""
                       = "%"
-                  p: +translate("Placement rate")
+                  p.text-white.text-md-dark: +translate("Placement rate")
 
     section.position-relative.py-5
       .container.position-relative
@@ -119,7 +119,7 @@ mixin singleCourse
 
     .container
       .row
-        .col-md-6.pt-md-5
+        .col-md-6.pt-md-5.d-none.d-md-block
           ul#myTab2.nav.flex-column(role='tablist')
             each object, index in course.archivements.filter(a => a.title && a.description)
               li.nav-item.mb-5(role='presentation')
@@ -127,27 +127,31 @@ mixin singleCourse
                   img.h-4.w-4.object-fit-contain.mr-3(alt=object.description src="/media/pixel.gif" style="background-image: url('/images/"+object.icon+"')")
                   span.font-weight-bold.text-dark= object.title
         .col-md-6.position-relative.p-0
-
           .dotted.w-15.h-15.position-absolute.top.right.yellow.mt-n4.mr-n4.z-minus
           .dotted.w-15.h-15.position-absolute.bottom.left.iron.mb-n4.ml-n4.z-minus
           .position-absolute.top.left.right.bottom.bg-primary-trans.z-minus
-          #myTab2Content.tab-content.position-relative
+          .tab-content.position-relative.px-3.py-5
             each object, index in course.archivements.filter(a => a.title && a.description)
+              .font-weight-bold.d-md-none.bg-white.shadow-sm.mb-2.d-flex.justify-content-between.rounded(data-toggle='collapse', data-target=`#affiliate_section_${index}`)
+                div
+                  img.h-4.w-4.object-fit-contain.mr-3(alt=object.description src=`/images/${object.icon}`)
+                  =object.title
+                button.btn.btn-link.p-3.d-md-none(data-toggle='collapse', data-target=`#affiliate_partner_${index}_${index2}`)
+                  .rotate-180
+                    include ../../assets/media/chevron.svg
               - archivements_sub_items = object.description.split(";")
-              .tab-pane.fade.p-md-5(id=`affiliate_partner_${index}` class=`${index === 0 ? `show active`: ``}` role='tabpanel' aria-labelledby=`affiliate_partner_${index}-tab`)
-                each sub_item, index2 in archivements_sub_items
-                  .bg-white.shadow-sm.shadow-md-none(class=`${index2 != archivements_sub_items.length -1 ? `mb-5`: ``}`)
-                    .d-flex.align-items-center
-                      h3.h2.text-primary-light.border-right.font-weight-bold.p-3.m-0=sub_item.split("|")[0]
-                      .p-3.font-weight-bold= sub_item.split("|")[1]
-                      button.btn.btn-link.p-3.d-md-none(data-toggle='collapse', data-target=`#affiliate_partner_${index}_${index2}`)
-                        .rotate-270
-                          include ../../assets/icons/arrow.svg
-                    .d-none.d-md-block
-                      .px-3.pb-3
-                        = sub_item.split("|")[2]
-                    .collapse.d-md-none.bg-white.p-4.shadow-sm(id=`affiliate_partner_${index}_${index2}`)
-                      p=sub_item.split("|")[2]
+              .tab-pane.fade.d-block.opacity-1.mb-4(id=`affiliate_partner_${index}` class=`${index === 0 ? `show active`: ``}` role='tabpanel' aria-labelledby=`affiliate_partner_${index}-tab`)
+                .collapse.p-md-5.mb-5.mb-md-0.shadow-sm.shadow-md-none(id=`affiliate_section_${index}`)
+                  each sub_item, index2 in archivements_sub_items
+                    .bg-white.rounded(class=`${index2 != archivements_sub_items.length -1 ? `mb-md-5`: ``}`)
+                      .d-flex.align-items-center(data-toggle='collapse', data-target=`#affiliate_partner_${index}_${index2}`)
+                        h3.h2.text-primary-light.border-right.font-weight-bold.p-3.m-0=sub_item.split("|")[0]
+                        .p-3.font-weight-bold= sub_item.split("|")[1]
+                      .d-none.d-md-block
+                        .px-3.pb-3
+                          = sub_item.split("|")[2]
+                      .d-md-none.bg-white.p-4(id=`affiliate_partner_${index}_${index2}`)
+                        p=sub_item.split("|")[2]
 
     section.container.py-5
       .position-relative.py-5

@@ -499,7 +499,7 @@ UPCOMING EVENTS
   width: 100%;
   object-fit: contain;
 }
-button[data-toggle="collapse"]{
+[data-toggle="collapse"]{
   svg {
     transition: transform .3s ease;
     transform: rotate(90deg);
@@ -1804,7 +1804,7 @@ body[class*="pages-"] {
 }
 .bg-md-white {
   @include media-breakpoint-up(md) {
-    background-color: white;
+    background-color: white !important;
   }
 }
 .font-size-normal {
