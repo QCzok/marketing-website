@@ -2075,3 +2075,19 @@ a[data-toggle="tab"] {
 .tab-pane {
   animation: ease .3s slideInFromTop;
 }
+.opacity-1 {
+  opacity: 1 !important;
+}
+.opacity-md-0 {
+  @include media-breakpoint-up(md) {
+    opacity: 0 !important;
+  }
+}
+.tab-pane.active {
+  .collapse:not(.show) {
+    animation: ease .3s slideInFromTop;
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+  }
+}
