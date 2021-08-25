@@ -33,8 +33,6 @@ jobs:
           -d chat_id=${{ secrets.TELEGRAM_BOT_CHAT_ID }} \
           -d text="Deploy of marketing-website ${{ github.event.client_payload.branch_name }} ${{ github.event.client_payload.sha }} on $(date) successful"
       - name: ACK Slack - Acknowledge deploy_successful from remote infrastructure repository
-        # TODO notify on master deploys
-        # if: github.event.action == 'deploy_successful' && ${{ env.GIT_BRANCH_NAME == 'master'}}
         if: github.event.action == 'deploy_successful' 
         run: |
            curl -X POST https://hooks.slack.com/services/${{secrets.SLACK_WEBHOOK}} \
