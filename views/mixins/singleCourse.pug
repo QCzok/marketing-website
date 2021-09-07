@@ -1,23 +1,25 @@
 mixin singleCourse
   .jumbotron.jumbotron-fluid.mb-0.p-0.z-1.position-relative
     .container-md
-      .d-md-none.right.bg-primary-light.w-3.h-3.position-absolute.rounded-circle.mr-4.mt-n4
-      .d-md-none.position-absolute.right.bg-light-blue.w-3.h-3
+      .d-lg-none.right-5.bg-primary-light.w-2.h-2.position-absolute.rounded-circle.mr-3.mt-n3.top-25
+      .d-lg-none.position-absolute.right-5.bg-light-blue.w-2.h-2.top-25
       .dotted.d-md-none.red.w-6.h-6.rounded-circle.position-absolute.left.mr-5.top-5.ml-n5
-      .dotted.d-md-none.blue.w-7.h-7.rounded-circle.position-absolute.left.bottom.ml-3.mb-5
       .row.py-md-5
-        .col-md-6.bg-panel.right.py-md-5
-          .py-5
-            .py-5
-              .pb-5
-                .pb-5
-                  h1.display-1.my-3.mt-y-xl-5.word-wrap-break-word.text-primary-light.text-md-dark=course.headline
+        .col-lg-6.bg-panel.right.py-md-5
+          .py-5.py-md-0
+            .py-5.py-md-0
+              .pb-5.pb-md-0
+                .pb-5.pb-md-0
+                  h1.display-1.my-3.word-wrap-break-word.text-primary-light.text-lg-dark=course.headline
                   p.lead.mb-3= course.courselength
+                  .dotted.w-7.h-4.position-absolute.top-18.right.iron.z-minus.mr-3.d-lg-none
                   p.lead.mb-3.pt-3()=course.subheading
-                  .d-md-none.left.bg-primary-light.w-3.h-3.position-absolute.rounded-circle
-                  .d-md-none.position-absolute.left.bg-light-blue.w-3.h-3.ml-4.mt-4
-              div.mt-5.mb-3.my-xl-5.position-relative.py-5.px-3.px-md-0.row
+                  .float-right.w-50.border.border-bottom.border-light-blue.d-lg-none
+                  .d-lg-none.left-7.bg-primary-light.w-2.h-2.position-absolute.rounded-circle
+                  .d-lg-none.position-absolute.left-7.bg-light-blue.w-2.h-2.ml-3.mt-3.rounded-circle
+              div.mb-3.my-xl-5.position-relative.py-5.px-3.px-md-0.row
                 .bg-primary-light.position-absolute.top.left.w-100.h-100.d-md-none
+                .dotted.w-8.h-8.position-absolute.right.iron.z-0.rounded-circle.d-lg-none
                 .mt-3.mt-xl-5.w-100
                   a.btn.btn-secondary.px-4.mb-4.w-100.w-md-auto.py-3(href="/signup"): +translate("Apply Now")
                   if course.curriculumPdf
@@ -42,7 +44,7 @@ mixin singleCourse
               each partner, index in randompartners.splice(0,4)
                 .col-6.col-md-3.partner.h-4.flex-column.align-items-center.justify-content-center(class=index > 3 ? "d-none d-lg-flex" : "d-flex")
                   img.partners-logo.w-100.px-2(alt=partner.title, src="/images/" + partner.partnerlogo, )
-        .col-md-6.py-5.py-md-0.d-none.d-md-flex
+        .col-lg-6.py-5.py-md-0.d-none.d-lg-flex
           .floatings.h-100
             .w-100.align-items-end.h-100.d-flex.flex-column
               .p-4.position-relative.w-100.h-100

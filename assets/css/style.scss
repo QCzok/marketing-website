@@ -1213,21 +1213,21 @@ div[class*=" #{$class-slug}"] {
     max-height: none!important;
   }
 }
-@for $i from 0 through 20 {
-  .top-#{ $i * 5 } {
-    top: 5% * $i;
+@for $i from 0 through 100 {
+  .top-#{ $i } {
+    top: $i * 1%;
   }
 
-  .left-#{ $i * 5 } {
-    left: 5% * $i;
+  .left-#{ $i } {
+    left: $i * 1%;
   }
 
-  .right-#{ $i * 5 } {
-    right: 5% * $i;
+  .right-#{ $i } {
+    right: $i * 1%;
   }
 
-  .bottom-#{ $i * 5 } {
-    bottom: 5% * $i;
+  .bottom-#{ $i } {
+    bottom: $i * 1%;
   }
 
 }
@@ -1742,11 +1742,7 @@ body[class*="pages-"] {
   padding-inline: 5px;
   box-decoration-break: clone;
 }
-.mt-y-xl-5 {
-  @media (min-height: 800px)  { 
-    margin-top: 3rem !important;  
-  }
-}
+
 .jumbotron-polygon {
   position: absolute;
   left: 50%;
@@ -1836,6 +1832,11 @@ body[class*="pages-"] {
 }
 .text-md-dark {
   @include media-breakpoint-up(md) {
+    color: $dark !important;
+  }
+}
+.text-lg-dark {
+  @include media-breakpoint-up(lg) {
     color: $dark !important;
   }
 }
