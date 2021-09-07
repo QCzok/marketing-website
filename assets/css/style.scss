@@ -1530,10 +1530,47 @@ body:not(.admin) {
   z-index: 999999;
   right: 0;
 }
-
+.bg-md-white {
+  @include media-breakpoint-up(md) {
+    background-color: white !important;
+  }
+}
+.bg-md-yellow {
+  @include media-breakpoint-up(md) {
+    background-color: $yellow !important;
+  }
+}
 .bg-md-transparent {
   @include media-breakpoint-up(lg) {
     background-color: transparent !important;
+  }
+}
+
+.bg-light-grey {
+  background-color: $light-grey !important;
+}
+
+.bg-primary-dark {
+  background-color: $primary-dark !important;
+}
+.bg-primary-trans {
+  background-color: $primary-trans !important;
+}
+
+.bg-light-blue {
+  background-color: $primary-trans;
+}
+
+.bg-light-blue {
+  background-color: $primary-trans;
+}
+.bg-yellow {
+  background-color: $yellow;
+}
+
+.bg-md-primary-light {
+  @include media-breakpoint-up(md) {
+    background-color: $primary-light;
   }
 }
 
@@ -1802,11 +1839,7 @@ body[class*="pages-"] {
     color: $dark !important;
   }
 }
-.bg-md-white {
-  @include media-breakpoint-up(md) {
-    background-color: white !important;
-  }
-}
+
 .font-size-normal {
   font-size: 1em;
 }

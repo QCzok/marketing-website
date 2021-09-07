@@ -49,30 +49,6 @@ $theme-colors: (
   --lh: 1.68;
 }
 
-.bg-light-grey {
-  background-color: $light-grey !important;
-}
-
-.bg-primary-dark {
-  background-color: $primary-dark !important;
-}
-.bg-primary-trans {
-  background-color: $primary-trans !important;
-}
-
-.bg-light-blue {
-  background-color: $primary-trans;
-}
-.bg-yellow {
-  background-color: $yellow;
-}
-
-.bg-md-light-blue {
-  @include media-breakpoint-up(md) {
-    background-color: $primary-trans;
-  }
-}
-
 .btn-secondary {
   @include btn-color($secondary, white, transparent);
   transition: all $transition ease;
