@@ -26,6 +26,9 @@ $transition: 0.15s;
 $theme-colors: (
   'secondary': $secondary,
 );
+
+$pale-blue: #E7F2FF;
+
 @import '../../node_modules/bootstrap/scss/bootstrap';
 @import '../../node_modules/quill/dist/quill.snow.css';
 

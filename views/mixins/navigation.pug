@@ -1,68 +1,78 @@
 mixin navigation
-  if currentPath && !currentPath.includes('admin') && !currentPath.includes('users') && locals.settings && locals.settings.announcement_banner_string
-    .w-100.text-white.p-2.text-center.z-foreground.bg-primary()
+  nav#nav-primary.fixed-top.z-1.navbar.navbar-expand-lg.navbar-light.py-0.bg-tranition.px-0.px-md-0.flex-column(class=currentPath == "/" ? " z-foreground " : "")
+    if currentPath && !currentPath.includes('admin') && !currentPath.includes('users') && locals.settings && locals.settings.announcement_banner_string
+     .w-100.text-white.p-2.nav-banner.text-center.z-foreground(class=course && course.coloraccent ? `` : `bg-primary`, style=course && course.coloraccent ? `background-color: ${course.coloraccent};  color: ${course.textColor} !important` : `` : `` )
       div
         =__(locals.settings.announcement_banner_string)
         if locals.settings && locals.settings.announcement_banner_cta && locals.settings.announcement_banner_cta !== currentPath
-          a.btn.btn-link.ml-3.btn-secondary.py-0()=__("Show More")
-  nav#nav-primary.pb-3.z-1.navbar.navbar-expand-lg.navbar-light.py-0.bg-tranition.px-3.px-md-3.flex-column(class=currentPath == "/" ? " z-foreground " : "")
+          a.btn.btn-link.ml-3.btn-secondary.py-0(class=course && course.coloraccent ? `btn-white` : `btn-secondary` style=course && course.coloraccent ? `color: ${course.coloraccent} !important` : `` href=locals.settings.announcement_banner_cta)=__("Show More")
     if course && course.coloraccent
-      div.position-absolute.left.w-50.h-100.z-minus.d-none.d-lg-block()
-    .align-items-stretch.pl-md-0(class=currentPath && currentPath.includes('/admin') ? ' container-fluid' : " container-md" )
+      div.position-absolute.left.w-50.h-100.z-minus.d-none.d-lg-block(class=course && course.coloraccent ? `` : `bg-primary`, style=course && course.coloraccent ? `background-color: ${course.coloraccent}!important` : ``)
+    .align-items-stretch.pl-md-0.nav-content(class=currentPath && currentPath.includes('/admin') ? ' container-fluid' : " container-lg" )
       a.navbar-brand.py-3.pl-sm-3.h-60(href="/" class=course && course.coloraccent ? 'text-white-responsive' : 'text-primary' )
         include ../../assets/media/dci.svg
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsingNavbar3')
         span.navbar-toggler-icon
         span.sr-only="Toggle menu"
-      #collapsingNavbar3.navbar-collapse.collapse.w-100.mt-4.mt-md-0.align-items-stretch
+      #collapsingNavbar3.navbar-collapse.collapse.w-100.mt-0.mt-md-0.align-items-stretch
         ul.nav.navbar-nav.my-3.my-lg-0.ml-auto.w-100.justify-content-end.flex-nowrap#headernav(class=currentPath && currentPath.includes('/courses') && currentPath.lastIndexOf('/') > 0 ? 'not-set-active' : ' ' )
           li.position-relative.nav-item.dropdown-custom
-            a.courseslink.dropdown-toggle.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.z-1( class=currentPath === "/courses" || ( currentPath.includes("/courses") && course && course.coloraccent ) ? `active` : ``  href="#" aria-haspopup="true" aria-expanded="false")
+            a.courseslink.dropdown-toggle.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.z-1.h-100( class=currentPath === "/courses" || ( currentPath.includes("/courses") && course && course.coloraccent ) ? `active` : ``  href="#" aria-haspopup="true" aria-expanded="false")
               =__("Courses")
-
-            .dropdown-menu.border-radius-0.shadow-sm.z-0.p-0(aria-labelledby='navbarDropdownMenuLink')
-              a.dropdown-item.nav-link.px-2(class= currentPath == "/courses" ? "active" : "" style=currentPath === "/courses" ? "color: white!important;" : "" href='/courses')=__("All courses")
-              each course in courses
-                a.dropdown-item.nav-link.px-2(href='/courses/'+ course.slug)=course.headline
+            .dropdown-menu.dropdown-menu-left.border-radius-0.shadow-sm.z-0.p-0.courses-dropdown(aria-labelledby='navbarDropdownMenuLink')
+                div.grid-layout
+                  //- a.dropdown-item.nav-link.px-2(class= currentPath == "/courses" ? "active" : "" style=currentPath === "/courses" ? "color: white!important;" : "" href='/courses')=__("All courses")
+                  each course in courses
+                    a.dropdown-item.p-2.nav-link.px-2(class=course && currentPath.includes(course.slug) && !course.coloraccent ? `bg-primary text-white` : ``, href='/courses/'+ course.slug)
+                        div.icon-container
+                          img.object-fit-cover(alt=course.headline src="/images/" + course.menuicon)
+                        div.details-container
+                          p.mb-1=course.headline
+                          small=course.courselength
           li.position-relative.nav-item
-            a.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.z-1(class=currentPath && currentPath.includes('/events') && !currentPath.includes('/admin') ? "active" : "", href='/events')
+            a.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.z-1.h-100(class=currentPath && currentPath.includes('/events') && !currentPath.includes('/admin') ? "active" : "", href='/events')
               =__("Events")
           li.position-relative.nav-item
-            a.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.z-1(href="/contact", class=currentPath == "/contact" ? "active" : "")=__("Campuses")
+            a.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.z-1.h-100(href="/contact", class=currentPath == "/contact" ? "active" : "")=__("Campuses")
           li.position-relative.nav-item
-            a.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.z-1(class=currentPath && currentPath.includes("/jobcenter") ? "active" : "", href='/jobcenter')=__("Jobcenter")
+            a.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.z-1.h-100(class=currentPath && currentPath.includes("/jobcenter") ? "active" : "", href='/jobcenter')=__("Jobcenter")
 
           if headerPages
             each page in headerPages
               if !page.companypage && !page.metapage
                 li.position-relative.nav-item
-                  a.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100(class= currentPath === ("/pages/" + page.slug) ? "active" : "" href='/pages/' + page.slug)=page.title
+                  a.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.h-100(class= currentPath === ("/pages/" + page.slug) ? "active" : "" href='/pages/' + page.slug)=page.title
             
           li.position-relative.nav-item
-            //- a.dropdown-toggle.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100(class=page && page.companypage !== "true" && currentPath && currentPath.includes("/pages") || currentPath && currentPath.includes("/about-us") : "", href="#", aria-haspopup="true" aria-expanded="false")=__("Companies")
+            //- a.dropdown-toggle.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.h-100(class=page && page.companypage !== "true" && currentPath && currentPath.includes("/pages") || currentPath && currentPath.includes("/about-us") : "", href="#", aria-haspopup="true" aria-expanded="false")=__("Companies")
             //- .dropdown-menu.p-0.border-radius-0.shadow-sm(aria-labelledby='navbarDropdownMenuLink')
             //-   if headerPages
             //-     each page in headerPages
             //-       if page.companypage
             //-         a.dropdown-item.nav-link(class= currentPath === ("/pages/" + page.slug) ? "active" : "" href='/pages/' + page.slug)=page.title
-            a.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.z-1(class=currentPath && currentPath.includes("/tour") ? "active" : "" href='/tour')=__("Companies")
+            a.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.h-100.z-1(class=currentPath && currentPath.includes("/tour") ? "active" : "" href='/tour')=__("Companies")
 
           li.position-relative.nav-item.dropdown-custom
-            a.dropdown-toggle.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100(class=( page && (page.metapage != "true") && currentPath && currentPath.includes("/pages") ) || ( currentPath && currentPath.includes("/about-us") ) ? "active" : "", href="#", aria-haspopup="true" aria-expanded="false")=__("Get involved")
+            a.dropdown-toggle.mx-0.mx-xl-3.mx-lg-1.nav-link.d-flex.align-items-center.h-100(class=( page && (page.metapage != "true") && currentPath && currentPath.includes("/pages") ) || ( currentPath && currentPath.includes("/about-us") ) ? "active" : "", href="#", aria-haspopup="true" aria-expanded="false")=__("Get involved")
             .dropdown-menu.p-0.border-radius-0.shadow-sm(aria-labelledby='navbarDropdownMenuLink')
-              a.dropdown-item.nav-link(href='/about-us/', class=currentPath && currentPath.includes("/about-us") ? "active" : "")=__("About us")
-              a.dropdown-item.nav-link(href='https://dci.jobs.personio.de/', class=currentPath == "/jobs" ? "active" : "")=__("Jobs")
+              a.dropdown-item.nav-link.p-2.px-2(href='/about-us/', class=currentPath && currentPath.includes("/about-us") ? "active" : "")=__("About us")
+              a.dropdown-item.nav-link.p-2.px-2(href='https://dci.jobs.personio.de/', class=currentPath == "/jobs" ? "active" : "")=__("Jobs")
               if headerPages
                 each page in headerPages
                   if page.metapage
-                    a.dropdown-item.nav-link(class= currentPath === ("/pages/" + page.slug) ? "active" : "" href='/pages/'+ page.slug)=page.title
+                    a.dropdown-item.nav-link.p-2.px-2(class= currentPath === ("/pages/" + page.slug) ? "active" : "" href='/pages/'+ page.slug)=page.title
 
-          li.position-relative.nav-item.z-foreground
-            a.contactlinktext.mx-0.mx-xl-2.mx-lg-0.nav-link.d-flex.align-items-center.h-100.white-space-nowrap(href="/signup")=__("Apply now short")
-            .contactlink()
+          li.d-none.position-relative.nav-item.z-foreground.d-lg-flex.justify-content-center.align-items-center
+           div
+             a.btn.btn-outline-primary.contactlinktext.mx-0.mx-xl-2.mx-lg-1.nav-link.d-flex.align-items-stretch.h-100.white-space-nowrap(href="/signup" class=course && course.coloraccent ? `` : `text-white` )=__("Apply now")
+             .contactlink(class=course && course.coloraccent ? `` : `bg-primary`, style=course && course.coloraccent ? `background-color: ${course.coloraccent}` : `` )
 
-          li.position-relative.nav-item.d-flex.align-items-center
-            a.ml-xl-2.ml-lg-1.nav-link.d-flex.align-items-center.h-100(style=course && course.coloraccent && locale === "de" ? `color: ${course.coloraccent}!important` : `` class=locale === "de" ? "active cursor-default" : "" href=locale === "de" ? "#": "/i18n/de") DE
+          li.position-relative.nav-item.d-flex.align-items-center.lang-switch
+            a.ml-xl-2.ml-lg-1.nav-link.d-flex.align-items-center.h-100(style=course && course.coloraccent && locale === "de" ? `font-weight: 500` : `` class=locale === "de" ? "active cursor-default" : "" href=locale === "de" ? "#": "/i18n/de") DE
             = "|"
-            a.mr-xl-2.mr-lg-1.nav-link.d-flex.align-items-center.h-100(style=course && course.coloraccent && locale === "en" ? `color: ${course.coloraccent}!important` : `` class=locale === "en" ? "active cursor-default" : "" href=locale === "en" ? "#": "/i18n/en") EN
+            a.mr-xl-2.mr-lg-1.nav-link.d-flex.align-items-center.h-100(style=course && course.coloraccent && locale === "en" ? `font-weight: 500` : `` class=locale === "en" ? "active cursor-default" : "" href=locale === "en" ? "#": "/i18n/en") EN
 
+        div.apply-now-collapsed.d-lg-none.nav-item.z-foreground.d-sm-flex.justify-content-center.align-items-stretch
+          div
+            a.btn.btn-primary.contactlinktext.mx-0.mx-xl-2.mx-lg-1.nav-link.d-flex.align-items-stretch.h-100.white-space-nowrap.justify-content-center(href="/signup" class=course && course.coloraccent ? `` : `text-white` )=__("Apply now")
+            .contactlink(class=course && course.coloraccent ? `` : `bg-primary`, style=course && course.coloraccent ? `background-color: ${course.coloraccent}` : `` )

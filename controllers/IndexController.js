@@ -47,7 +47,7 @@ module.exports.landingpage = async (req, res) => {
         .sort('order')
         .exec({})
       const courses = Course
-        .find(query, 'icon headline slug subheading courselength')
+        .find(query, 'icon headline slug subheading courselength menuicon')
         .sort({ order: 1 })
         .exec()
       indexData = await Promise.all([stories, partners, courses])

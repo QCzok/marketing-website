@@ -76,33 +76,7 @@ html.h-100(lang=locale === "de" ? 'de': 'en')
     link(rel="manifest", href="/assets/site.webmanifest")
     link(rel="mask-icon", href="/assets/safari-pinned-tab.svg", color="#5bbad5")
 
-    if course && course.coloraccent
-      style(type='text/css').
-       .dropdown-custom:hover .dropdown-menu .dropdown-item:hover,
-       .dropdown:hover .dropdown-menu .dropdown-item:hover {
-          color: black !important;
-          background-color: #{course.coloraccent} !important;
-        }
-        .dropdown-custom .dropdown-menu.show .dropdown-item:active,
-        .dropdown-custom .dropdown-menu.show .dropdown-item:focus {
-          background-color: #{course.coloraccent} !important;
-          color: var(--dark) !important;
-        }
-        @media (min-width: 768px) {
-          .dropdown-menu .active:hover {
-            background-color: #{course.coloraccent};
-          }
-        }
-        .courseslink {
-          color: #{course.coloraccent}!important;
-        }
-        @media (min-width: 768px) {
-          .courseslink {
-            color: var(--dark) !important;
-          }
-        }
   body.h-100.d-flex.flex-column(data-spy='scroll', data-target='#courseScrollspy', data-offset='1', class=`${pathclass+(currentPath && currentPath.includes('/admin') ? ' admin' : currentPath == "/" ? "index" : "" )} ${user ? `loggedin` : ``}`)
-
 
     if live
       noscript
@@ -123,7 +97,7 @@ html.h-100(lang=locale === "de" ? 'de': 'en')
         div
           +navigation
           
-      .flex-grow-1.z-0(class=currentPath && /users|admin/.test(currentPath) ? ' bg-light pb-5' : "" )
+      .flex-grow-1.z-0(class=currentPath && /users|admin/.test(currentPath) ? 'pt-100 bg-light pb-5' : "pt-100" )
         block content
       if currentPath && !currentPath.includes('admin') && !currentPath.includes('users')
         footer.site-footer(role='contentinfo' class=user ? "pb-5" : "")

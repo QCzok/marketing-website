@@ -396,6 +396,22 @@ Array.from(document.querySelectorAll('.dropdown-custom')).map(dropdown => {
     dropdown.querySelector('.dropdown-menu').classList.toggle('show')
   })
 })
+
+$('#collapsingNavbar3').on('hidden.bs.collapse', function () {
+  $('body').toggleClass('no-scroll');
+});
+
+$('#collapsingNavbar3').on('shown.bs.collapse', function () {
+  $('body').toggleClass('no-scroll');
+});
+
+// const burger = document.querySelector('#collapsingNavbar3');
+// if(burger)(
+//   burger.addEventListener("click", function (event) {
+//     document.body.toggleClass('no-scroll');
+// })
+// )
+
 // const setObserver = (ref) => {
 //   let options = {
 //     threshold: 0.9

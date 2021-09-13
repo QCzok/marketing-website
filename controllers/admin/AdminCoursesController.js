@@ -89,6 +89,7 @@ module.exports.createCourse = async function(req, res) {
   course.locations = req.body.locations;
   course.icon = req.body.icon;
   course.subicon = req.body.subicon;
+  course.menuicon = req.body.menuicon;
   course.coloraccent = req.body.coloraccent;
   course.massnahmeNumber = req.body.massnahmenummer;
   course.massnahmeDetails = req.body.massnahmedetails;
@@ -201,6 +202,7 @@ module.exports.uploadImages = multer({
   { name: "companiesPdf", maxCount: 1 },
   { name: "icon", maxCount: 1 },
   { name: "subicon", maxCount: 1 },
+  { name: "menuicon", maxCount: 1 },
   { name: "archivement_icon_1", maxCount: 1 },
   { name: "archivement_icon_2", maxCount: 1 },
   { name: "archivement_icon_3", maxCount: 1 },
@@ -277,6 +279,9 @@ module.exports.updateCourse = async function(req, res) {
   if(req.body.subicon && course.subicon && await fs.existsSync(path.resolve(process.env.IMAGE_UPLOAD_DIR, course.subicon))) {
     await fs.unlinkSync(path.resolve(process.env.IMAGE_UPLOAD_DIR, course.subicon));
   }
+  if(req.body.menuicon && course.menuicon && await fs.existsSync(path.resolve(process.env.IMAGE_UPLOAD_DIR, course.menuicon))) {
+    await fs.unlinkSync(path.resolve(process.env.IMAGE_UPLOAD_DIR, course.menuicon));
+  }
   if(req.body.archivement_icon_1 && course.archivement_icon_1 && await fs.existsSync(path.resolve(process.env.IMAGE_UPLOAD_DIR, course.archivement_icon_1))) {
     await fs.unlinkSync(path.resolve(process.env.IMAGE_UPLOAD_DIR, course.archivement_icon_1));
   }
@@ -332,6 +337,7 @@ module.exports.updateCourse = async function(req, res) {
   course.companiesPdf = req.body.companiesPdf ? req.body.companiesPdf : course.companiesPdf;
   course.icon = req.files.icon ? req.body.icon : course.icon;
   course.subicon = req.files.subicon ? req.body.subicon : course.subicon;
+  course.menuicon = req.files.menuicon ? req.body.menuicon : course.menuicon;
   course.curriculumSectionSubheading = req.body.curriculumSectionSubheading;
   course.textColor = req.body.textColor;
   course.courseLanguages = req.body.courseLanguages;
