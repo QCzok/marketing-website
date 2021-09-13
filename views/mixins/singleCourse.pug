@@ -211,94 +211,95 @@ mixin singleCourse
                       span= story.workPosition
                     div !{story.toHTML}
             
-    section#section3.container.text-left.position-relative
+    section#section3.container.text-left.position-relative.py-5
       .d-md-none.bg-primary-light.w-3.h-3.position-absolute
       .d-md-none.bg-light-blue.position-absolute.z-minus.w-3.h-3.mt-3.ml-3
       .pt-5
-        .pt-5
-          .dotted.w-4.h-2.position-absolute.top.left.iron.z-minus.mr-3.mt-n4.ml-3.d-none.d-md-block
-          h2.font-weight-bold.text-uppercase.mb-4: +translate("Course Destails & Requirements")
-          .row
-            .col-md-8
-              .position-absolute.top.left.right.bottom.third-transparent.z-minus     
-              if course.startInterval
+        .py-5
+          .py-md-5
+            .dotted.w-4.h-2.position-absolute.top.left.iron.z-minus.mr-3.mt-n4.ml-3.d-none.d-md-block
+            h2.font-weight-bold.text-uppercase.mb-4: +translate("Course Destails & Requirements")
+            .row
+              .col-md-8
+                .position-absolute.top.left.right.bottom.third-transparent.z-minus     
+                if course.startInterval
+                  .my-3
+                    strong.mr-2
+                      +translate("Starts every")
+                      = ":"
+                    span
+                      span.padded-text()=course.startInterval
                 .my-3
                   strong.mr-2
-                    +translate("Starts every")
-                    = ":"
+                    +translate("Teaching Mode")
+                    =":"
                   span
-                    span.padded-text()=course.startInterval
-              .my-3
-                strong.mr-2
-                  +translate("Teaching Mode")
-                  =":"
-                span
-                  span.padded-text()=__( "On Campus & Online" )
-              if course.courseLanguages
-                .my-3
-                  strong.mr-2
-                    +translate("Language")
-                    =":"
-                  span.padded-text()
-                    = course.courseLanguages
-              if course.courselength
-                .my-3
-                  strong.mr-2
-                    +translate("Duration")
-                    =":"
-                  span.padded-text()= course.courselength
-              if course.locations
-                .my-3
-                  strong.mr-2
-                    +translate("Availability")
-                    =":"
-                  span.padded-text()
-                    each location, index in course.locations
-                      =location.name
-                      if index != course.locations.length - 1
-                        =", "
-                    =" & Online"
-              if course.requiredLanguages
-                .my-3
-                  strong.mr-2
-                    +translate("Language")
-                    =":"
-                  span.padded-text()
-                    = course.requiredLanguages
-              if course.computerKnowledge
-                .my-3
-                  strong.mr-2
-                    +translate("Computer Knowledge")
-                    =":"
-                  span.padded-text()=course.computerKnowledge
-              if course.education
-                .my-3
-                  strong.mr-2
-                    +translate("Education")
-                    =":"
-                  span.padded-text()=course.education
-              if course.other
-                .my-3
-                  strong.mr-2
-                    +translate("Other")
-                    =":"
-                  span.padded-text()=course.other
+                    span.padded-text()=__( "On Campus & Online" )
+                if course.courseLanguages
+                  .my-3
+                    strong.mr-2
+                      +translate("Language")
+                      =":"
+                    span.padded-text()
+                      = course.courseLanguages
+                if course.courselength
+                  .my-3
+                    strong.mr-2
+                      +translate("Duration")
+                      =":"
+                    span.padded-text()= course.courselength
+                if course.locations
+                  .my-3
+                    strong.mr-2
+                      +translate("Availability")
+                      =":"
+                    span.padded-text()
+                      each location, index in course.locations
+                        =location.name
+                        if index != course.locations.length - 1
+                          =", "
+                      =" & Online"
+                if course.requiredLanguages
+                  .my-3
+                    strong.mr-2
+                      +translate("Language")
+                      =":"
+                    span.padded-text()
+                      = course.requiredLanguages
+                if course.computerKnowledge
+                  .my-3
+                    strong.mr-2
+                      +translate("Computer Knowledge")
+                      =":"
+                    span.padded-text()=course.computerKnowledge
+                if course.education
+                  .my-3
+                    strong.mr-2
+                      +translate("Education")
+                      =":"
+                    span.padded-text()=course.education
+                if course.other
+                  .my-3
+                    strong.mr-2
+                      +translate("Other")
+                      =":"
+                    span.padded-text()=course.other
 
-            .col-md-4.position-relative.d-flex.flex-column.justify-content-center.py-5.py-md-0
-              .dotted.w-4.h-2.position-absolute.top-20.left.blue.z-minus.ml-n5.d-none.d-md-block
-              a.btn.btn-lg.btn-secondary.mb-3.btn-wide.mb-5(href="/signup"): +translate("Apply Now")
-              a.btn.btn-outline-primary.mb-4(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
-                div.h-2.w-2.d-inline-block.mr-2
-                  include ../../assets/icons/download.svg
-                +translate("Download Course Overview")
+              .col-md-4.position-relative.d-flex.flex-column.justify-content-center.py-5.py-md-0
+                .dotted.w-4.h-2.position-absolute.top-20.left.blue.z-minus.ml-n5.d-none.d-md-block
+                a.btn.btn-lg.btn-secondary.mb-3.btn-wide.mb-5(href="/signup"): +translate("Apply Now")
+                a.btn.btn-outline-primary.mb-4(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
+                  div.h-2.w-2.d-inline-block.mr-2
+                    include ../../assets/icons/download.svg
+                  +translate("Download Course Overview")
     hr.d-md-none
 
     section.position-relative
-      .bg-primary.position-absolute.left.top.w-100.h-100.d-none.d-md-block.z-minus
+      .bg-primary.position-absolute.left.top.w-100.h-100.d-none.d-md-block
       .dotted.d-md-none.blue.w-9.h-9.position-absolute.top-25.left.mr-5
       .dotted.d-md-none.blue.w-9.h-9.position-absolute.right.bottom.ml-2
-      .container.position-relative
-        h2.text-dark.text-md-white.my-5: +translate("Financing options")
+      .container.position-relative.pt-md-5
+        h2.text-dark.text-md-white.py-5: +translate("Financing options")
         .row
           .col-md-4.mb-5
             .position-relative.h-100
@@ -332,13 +333,17 @@ mixin singleCourse
 
       .position-relative.overflow-hidden.pb-200
         .bg-primary-trans.h-100.w-100.position-absolute.z-minus
-        .p-3.p-md-5.mb-5
-          .p-md-5.mb-5
+        .p-3.p-md-5
+          .p-md-5
             .dotted.blue.w-9.h-9.position-absolute.right.bottom.ml-2
             div.my-3.my-y-xl-5.text-center
-              h3.text-dark.text-md-dark.my-5.font-weight-light=__("Contact us to review your options and we’ll help you through the process.")
-              a.btn.btn-lg.btn-secondary.mb-3.w-100.w-md-auto(href="/signup"): +translate("Apply Now")
-              a.btn.btn-lg.btn-outline-white.mb-3.w-100.w-md-auto(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}` ): +translate("Download Course Overview")
+              .row
+                .col-md-6.offset-md-3
+                  h3.text-dark.text-md-white.my-5.font-weight-light=__("Contact us to review your options and we’ll help you through the process.")
+                .col-md-3.offset-md-3
+                  a.btn.btn-lg.btn-secondary.mb-3.w-100(href="/signup"): +translate("Contact us") 
+                .col-md-3
+                  a.btn.btn-lg.btn-outline-white.mb-3.w-100(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}` ): +translate("Read More")
 
           if user && user.admin === "true"
             div.py-3
