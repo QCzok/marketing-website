@@ -6,22 +6,22 @@ mixin singleCourse
       .dotted.d-md-none.red.w-6.h-6.rounded-circle.position-absolute.left.mr-5.top-5.ml-n5
       .row.py-md-5
         .col-lg-6.bg-panel.right.py-md-5
-          .py-5.py-md-0
-            .py-5.py-md-0
+          .py-5
+            .py-5
               .pb-5.pb-md-0
                 .pb-5.pb-md-0
-                  h1.display-1.my-3.word-wrap-break-word.text-primary-light.text-lg-dark=course.headline
-                  p.lead.mb-3= course.courselength
+                  h1.display-1.my-4.word-wrap-break-word.text-primary-light.text-lg-dark=course.headline
+                  p.lead.mb-1= course.courselength
                   .dotted.w-7.h-4.position-absolute.top-18.right.iron.z-minus.mr-3.d-lg-none
                   p.lead.mb-3.pt-3()=course.subheading
                   .float-right.w-50.border.border-bottom.border-light-blue.d-lg-none
                   .d-lg-none.left-7.bg-primary-light.w-2.h-2.position-absolute.rounded-circle
                   .d-lg-none.position-absolute.left-7.bg-light-blue.w-2.h-2.ml-3.mt-3.rounded-circle
-              div.mb-3.my-xl-5.position-relative.py-5.px-3.px-md-0.row
+              div.my-xl-5.position-relative.px-3.row
                 .bg-primary-light.position-absolute.top.left.w-100.h-100.d-md-none
                 .dotted.w-8.h-8.position-absolute.right.iron.z-0.rounded-circle.d-lg-none
-                .mt-3.mt-xl-5.w-100
-                  a.btn.btn-secondary.px-4.mb-4.w-100.w-md-auto.py-3(href="/signup"): +translate("Apply Now")
+                .w-100
+                  a.btn.btn-secondary.px-5.mb-4.w-100.w-md-auto.py-2(href="/signup"): +translate("Apply Now")
                   if course.curriculumPdf
                     a.btn.btn-outline-white-transparent.mb-4.w-100.w-md-auto.d-md-none.py-3(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
                       div.h-2.w-2.d-inline-block.mr-2
@@ -70,26 +70,25 @@ mixin singleCourse
   .position-relative.overflow-hidden
     .container-fluid.position-relative
       section#section1
-        .row.row-courses
+        .row.row-courses.py-5
           .col-md-4.bg-white.d-flex.flex-column.justify-content-center.position-relative.z-1
             .dotted.w-4.h-4.position-absolute.top.left-10.iron.z-minus
-            h2.mt-3.mb-3.text-left.d-md-none=course.title
+            h2.mb-3.text-left.d-md-none=course.title
             .justify-content-center.d-flex.position-relative
               img.img-fluid.mb-n5(alt=course.description src="/images/"+course.subicon)
               .d-none.d-md-block.w-100.h-100.position-absolute.bottom.left.bg-yellow.third-transparent.z-minus.shift-left-top
           .col-md-6.bg-white.py-5.d-flex.flex-column.justify-content-center
             .pr-5.border-right.border-grey
-              h2.mt-3.mb-3.text-left.d-none.d-md-bloc=course.title
+              h2.mt-3.mb-3.text-left.d-none.d-md-block.mr-md-5.pr-md-5=course.title
               p.mb-0.lead.text-left=course.subtitle
 
           .col-md-2.bg-primary-light.bg-md-white
-            .row.text-center.py-4
+            .row.text-center.pt-5
               .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-right.border-white.border-md-0
                 .counter-item
                   .counter-number.font-weight-bold
                     h2.display-2.text-white.text-md-dark
-                      span.counter-count=locals.settings.careersuccesspage_alumni ? locals.settings.careersuccesspage_alumni : user ? "setting not defined" : ""
-                      = "+"
+                      span.counter-count=locals.settings.landingpage_archivements_locations ? locals.settings.landingpage_archivements_locations : user ? "setting not defined" : 5
                   p.text-white.text-md-dark: +translate("DCI Alumni")
               .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-left.border-white.border-md-0
                 .counter-item
@@ -97,14 +96,7 @@ mixin singleCourse
                     h2.display-2.text-white.text-md-dark
                       span.counter-count=locals.settings.careersuccesspage_students ? locals.settings.careersuccesspage_students : user ? "setting not defined" : ""
                       = "+"
-                  p.text-white.text-md-dark: +translate("DCI Students")
-              .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-right.border-white.border-md-0
-                .counter-item
-                  .counter-number.font-weight-bold
-                    h2.display-2.text-white.text-md-dark
-                      span.counter-count=locals.settings.careersuccesspage_companypartners ? locals.settings.careersuccesspage_companypartners : user ? "setting not defined" : ""
-                      = "+"
-                  p.text-white.text-md-dark: +translate("Company Partners")
+                  p.text-white.text-md-dark: +translate("Students & Alumni")
               .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-left.border-white.border-md-0
                 .counter-item
                   .counter-number.font-weight-bold
@@ -112,23 +104,30 @@ mixin singleCourse
                       span.counter-count=locals.settings.careersuccesspage_employmentrate ? locals.settings.careersuccesspage_employmentrate : user ? "setting not defined" : ""
                       = "%"
                   p.text-white.text-md-dark: +translate("Placement rate")
+              .col-6.col-md-12.my-4.d-flex.flex-column.justify-content-center.border-right.border-white.border-md-0
+                .counter-item
+                  .counter-number.font-weight-bold
+                    h2.display-2.text-white.text-md-dark
+                      span.counter-count=locals.settings.careersuccesspage_companypartners ? locals.settings.careersuccesspage_companypartners : user ? "setting not defined" : ""
+                      = "+"
+                  p.text-white.text-md-dark: +translate("Company Partners")
 
-    section.position-relative.py-5
+    section.position-relative.py-4
       .container.position-relative
         .dotted.w-4.h-4.position-absolute.top.left.iron.z-minus.ml-n4
         h2.mb-3: +translate("What will I learn?")
         p.lead.mb-5=course.curriculumSectionSubheading
 
-    .container
-      .row
-        .col-md-6.pt-md-5.d-none.d-md-block
+    .container.px-md-5
+      .row.px-md-5
+        .col-md-5.pt-md-5.d-none.d-md-block
           ul#myTab2.nav.flex-column(role='tablist')
             each object, index in course.archivements.filter(a => a.title && a.description)
               li.nav-item.mb-5(role='presentation')
                 a.nav-link(id=`affiliate_partner_${index}-tab` data-toggle='tab' href=`#affiliate_partner_${index}` role='tab' aria-controls=`affiliate_partner_${index}` aria-selected='true' class=`${index === 0 ? `active`: ``}`)
                   img.h-4.w-4.object-fit-contain.mr-3(alt=object.description src="/media/pixel.gif" style="background-image: url('/images/"+object.icon+"')")
-                  span.font-weight-bold.text-dark= object.title
-        .col-md-6.position-relative.p-0
+                  span.font-weight-bold.text-dark.font-size-120= object.title
+        .col-md-7.position-relative.p-0
           .dotted.w-15.h-15.position-absolute.top.right.yellow.mt-n4.mr-n4.z-minus
           .dotted.w-15.h-15.position-absolute.bottom.left.iron.mb-n4.ml-n4.z-minus
           .position-absolute.top.left.right.bottom.bg-primary-trans.z-minus
@@ -155,7 +154,7 @@ mixin singleCourse
                       .d-md-none.bg-white.p-4(id=`affiliate_partner_${index}_${index2}`)
                         p=sub_item.split("|")[2]
 
-    .position-relative.py-5
+    .position-relative
       .py-5.py-md-0
         .d-md-none.bg-primary-light.w-3.h-3.position-absolute
         .d-md-none.bg-light-blue.position-absolute.z-minus.w-3.h-3.mt-3.ml-3
@@ -165,7 +164,7 @@ mixin singleCourse
             p.lead
             +translate("We offer much more than just teaching and hacking, such as")
             = ":"
-          .row
+          .row.pt-md-5
             .col-md-8
               if course.features.filter(t => !!t.title).length > 0   
                 .position-relative
@@ -187,111 +186,113 @@ mixin singleCourse
             .col-md-4
               .dotted.w-5.h-5.position-absolute.top.right-40.yellow.mt-n4.mr-n4.z-minus
               .dotted.w-15.h-15.position-absolute.bottom-10.right.iron.mb-n4.mr-n4.z-minus
-              img.w-100.h-100.object-fit-contain.d-none.d-md-block(alt=__( "Where Our Graduates Work" ) src="/media/leandro.jpg" )
+              img.w-100.object-fit-contain.d-none.d-md-block(alt=__( "Where Our Graduates Work" ) src="/media/leandro.jpg" )
 
     section
       .d-md-none.bg-primary-light.w-3.h-3.position-absolute
       .d-md-none.bg-light-blue.position-absolute.z-minus.w-3.h-3.mt-3.ml-3
       .pt-5
-        .pt-5
-          .position-relative
-            .bg-yellow.w-100.mb-n5.position-absolute.top-50.left.bottom.right.left.third-transparent.d-none.d-md-block
-            section#youtube
-              .container.position-relative
-                h2.mb-5=__("DCI Alumni at Work")
-                .dotted.w-4.h-2.position-absolute.top-15.left.iron.z-minus.mr-3.ml-n5.d-none.d-md-block
-                .dotted.w-15.h-15.position-absolute.bottom.right.iron.z-minus.mr-3.d-none.d-md-block
-                .row
-                  .col-md-6
-                    .videoWrapper
-                      iframe(width='100%' src='https://www.youtube.com/embed/oDzyVmmDh5c?controls=0' title=story.title frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen)
-                  .col-md-6.d-flex.justify-content-center.flex-column
-                    div.my-4
-                      strong=story.title + " - "
-                      span= story.workPosition
-                    div !{story.toHTML}
+        .position-relative
+          .bg-yellow.w-100.mb-n5.position-absolute.top-50.left.bottom.right.left.third-transparent.d-none.d-md-block
+          section#youtube
+            .container.position-relative
+              h2.mb-5=__("DCI Alumni at Work")
+              .dotted.w-4.h-2.position-absolute.top-15.left.iron.z-minus.mr-3.ml-n5.d-none.d-md-block
+              .dotted.w-15.h-15.position-absolute.bottom.right.iron.z-minus.mr-3.d-none.d-md-block
+              .row
+                .col-md-7
+                  .videoWrapper
+                    iframe(width='100%' src='https://www.youtube.com/embed/oDzyVmmDh5c?controls=0' title=story.title frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen)
+                .col-md-5.d-flex.justify-content-center.flex-column
+                  div.my-4
+                    strong=story.title + " - "
+                    span= story.workPosition
+                  div !{story.toHTML}
             
-    section#section3.container.text-left.position-relative.py-5
+    section#section3.container.text-left.position-relative
       .d-md-none.bg-primary-light.w-3.h-3.position-absolute
       .d-md-none.bg-light-blue.position-absolute.z-minus.w-3.h-3.mt-3.ml-3
       .pt-5
         .py-5
           .py-md-5
-            .dotted.w-4.h-2.position-absolute.top.left.iron.z-minus.mr-3.mt-n4.ml-3.d-none.d-md-block
-            h2.font-weight-bold.text-uppercase.mb-4: +translate("Course Destails & Requirements")
-            .row
-              .col-md-8
-                .position-absolute.top.left.right.bottom.third-transparent.z-minus     
-                if course.startInterval
+            .pt-md-5
+              .dotted.w-4.h-2.position-absolute.top.left.iron.z-minus.mr-3.mt-n4.ml-3.d-none.d-md-block
+              .row
+                .col-md-7
+                  .pt-md-5
+                    h2.font-weight-bold.pt-5.my-5: +translate("Course Destails & Requirements")
+                  .position-absolute.top.left.right.bottom.third-transparent.z-minus     
+                  if course.startInterval
+                    .my-3
+                      strong.mr-2
+                        +translate("Starts every")
+                        = ":"
+                      span
+                        span.padded-text()=course.startInterval
                   .my-3
                     strong.mr-2
-                      +translate("Starts every")
-                      = ":"
+                      +translate("Teaching Mode")
+                      =":"
                     span
-                      span.padded-text()=course.startInterval
-                .my-3
-                  strong.mr-2
-                    +translate("Teaching Mode")
-                    =":"
-                  span
-                    span.padded-text()=__( "On Campus & Online" )
-                if course.courseLanguages
-                  .my-3
-                    strong.mr-2
-                      +translate("Language")
-                      =":"
-                    span.padded-text()
-                      = course.courseLanguages
-                if course.courselength
-                  .my-3
-                    strong.mr-2
-                      +translate("Duration")
-                      =":"
-                    span.padded-text()= course.courselength
-                if course.locations
-                  .my-3
-                    strong.mr-2
-                      +translate("Availability")
-                      =":"
-                    span.padded-text()
-                      each location, index in course.locations
-                        =location.name
-                        if index != course.locations.length - 1
-                          =", "
-                      =" & Online"
-                if course.requiredLanguages
-                  .my-3
-                    strong.mr-2
-                      +translate("Language")
-                      =":"
-                    span.padded-text()
-                      = course.requiredLanguages
-                if course.computerKnowledge
-                  .my-3
-                    strong.mr-2
-                      +translate("Computer Knowledge")
-                      =":"
-                    span.padded-text()=course.computerKnowledge
-                if course.education
-                  .my-3
-                    strong.mr-2
-                      +translate("Education")
-                      =":"
-                    span.padded-text()=course.education
-                if course.other
-                  .my-3
-                    strong.mr-2
-                      +translate("Other")
-                      =":"
-                    span.padded-text()=course.other
+                      span.padded-text()=__( "On Campus & Online" )
+                  if course.courseLanguages
+                    .my-3
+                      strong.mr-2
+                        +translate("Language")
+                        =":"
+                      span.padded-text()
+                        = course.courseLanguages
+                  if course.courselength
+                    .my-3
+                      strong.mr-2
+                        +translate("Duration")
+                        =":"
+                      span.padded-text()= course.courselength
+                  if course.locations
+                    .my-3
+                      strong.mr-2
+                        +translate("Availability")
+                        =":"
+                      span.padded-text()
+                        each location, index in course.locations
+                          =location.name
+                          if index != course.locations.length - 1
+                            =", "
+                        =" & Online"
+                  if course.requiredLanguages
+                    .my-3
+                      strong.mr-2
+                        +translate("Language")
+                        =":"
+                      span.padded-text()
+                        = course.requiredLanguages
+                  if course.computerKnowledge
+                    .my-3
+                      strong.mr-2
+                        +translate("Computer Knowledge")
+                        =":"
+                      span.padded-text()=course.computerKnowledge
+                  if course.education
+                    .my-3
+                      strong.mr-2
+                        +translate("Education")
+                        =":"
+                      span.padded-text()=course.education
+                  if course.other
+                    .my-3
+                      strong.mr-2
+                        +translate("Other")
+                        =":"
+                      span.padded-text()=course.other
 
-              .col-md-4.position-relative.d-flex.flex-column.justify-content-center.py-5.py-md-0
-                .dotted.w-4.h-2.position-absolute.top-20.left.blue.z-minus.ml-n5.d-none.d-md-block
-                a.btn.btn-lg.btn-secondary.mb-3.btn-wide.mb-5(href="/signup"): +translate("Apply Now")
-                a.btn.btn-outline-primary.mb-4(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
-                  div.h-2.w-2.d-inline-block.mr-2
-                    include ../../assets/icons/download.svg
-                  +translate("Download Course Overview")
+                .col-md-5.position-relative.d-flex.flex-column.justify-content-center.py-5
+                  .px-md-5
+                    .dotted.w-4.h-2.position-absolute.top-20.left.blue.z-minus.ml-n5.d-none.d-md-block
+                    a.btn.btn-lg.btn-secondary.mb-3.btn-wide.mb-5(href="/signup"): +translate("Apply Now")
+                    a.btn.btn-outline-primary.mb-4(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}`) 
+                      div.h-2.w-2.d-inline-block.mr-2
+                        include ../../assets/icons/download.svg
+                      +translate("Download Course Overview")
     hr.d-md-none
 
     section.position-relative
@@ -334,16 +335,15 @@ mixin singleCourse
       .position-relative.overflow-hidden.pb-200
         .bg-primary-trans.h-100.w-100.position-absolute.z-minus
         .p-3.p-md-5
-          .p-md-5
-            .dotted.blue.w-9.h-9.position-absolute.right.bottom.ml-2
-            div.my-3.my-y-xl-5.text-center
-              .row
-                .col-md-6.offset-md-3
-                  h3.text-dark.text-md-white.my-5.font-weight-light=__("Contact us to review your options and we’ll help you through the process.")
-                .col-md-3.offset-md-3
-                  a.btn.btn-lg.btn-secondary.mb-3.w-100(href="/signup"): +translate("Contact us") 
-                .col-md-3
-                  a.btn.btn-lg.btn-outline-white.mb-3.w-100(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}` ): +translate("Read More")
+          .dotted.blue.w-9.h-9.position-absolute.right.bottom.ml-2
+          div.text-center
+            .row
+              .col-md-4.offset-md-4
+                p.text-dark.text-md-white.mb-5.font-weight-light=__("Contact us to review your options and we’ll help you through the process.")
+              .col-md-3.offset-md-3
+                a.btn.btn-lg.btn-secondary.mb-3.w-100.mx-3(href="/signup"): +translate("Contact us") 
+              .col-md-3
+                a.btn.btn-lg.btn-outline-white.mb-3.w-100.mx-3(href='#' data-toggle='modal', data-target='#curriculumpopup' data-course=`${course.slug}` ): +translate("Read More")
 
           if user && user.admin === "true"
             div.py-3
