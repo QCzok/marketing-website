@@ -495,6 +495,7 @@ module.exports.signupCourse = async (req, res, next) => {
     .sort('order')
     .exec({})
   return res.render('signup', {
-    partners
+    partners,
+    path: req.url.replace(/\/(.*)\//gm, "$1").replace(/(\w*)\//gm, "$1").replace("/", '-')
   })
 }
