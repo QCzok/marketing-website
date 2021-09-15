@@ -272,7 +272,8 @@ block content
                       h6.font-weight-bold.text-dark.mb-3=events[0].name
                     
                     .col.px-md-0
-                      p.d-none.d-md-block=events[0].text.substr(0, 300)
+                      if events[0].text
+                        p.d-none.d-md-block=events[0].text.substr(0, 300)
                       p.text-muted.mb-0
                         span.mr-1.mr-xl-3.w-1.d-inline-block.mb-3.mb-xl-0
                           img.mb-1.w-100.object-fit-contain(src="/media/events_clock-thin.svg", alt="Event time")
